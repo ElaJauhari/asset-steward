@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ubitricity Prototype &mdash; Sitetracker</title>
+
+<style>
+/* -------------------------------------------------------------------------
+   Scout design-system starter. Self-contained: no external requests, so the
+   identical file works on GitHub Pages, as a Claude artifact, and as a PDF.
+
+   HOW TO USE
+   1. Copy to mbrocklehurst/<kebab-slug>.html (your own directory).
+   2. Set <title>. Replace everything between the CONTENT markers.
+   3. Run starter/verify.sh before publishing.
+
+   TWO RULES THAT ARE EASY TO BREAK
+   - Non-ASCII: write &mdash; &ndash; &middot; as entities, not raw characters.
+     The charset meta below covers you here, but the Artifact publish path
+     wraps the file in its own skeleton -- entities survive both.
+   - Chamfers: see the .cham note below. Do not reach for border-radius.
+   ------------------------------------------------------------------------- */
+
+/* Chakra Petch 500/600/700, subset + embedded. Source: starter/fonts.css */
+@font-face{font-family:"Chakra Petch";font-style:normal;font-weight:500;font-display:swap;src:url(data:font/woff2;base64,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) format("woff2")}
+@font-face{font-family:"Chakra Petch";font-style:normal;font-weight:600;font-display:swap;src:url(data:font/woff2;base64,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) format("woff2")}
+@font-face{font-family:"Chakra Petch";font-style:normal;font-weight:700;font-display:swap;src:url(data:font/woff2;base64,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) format("woff2")}
+
+:root{
+  --font-display:"Chakra Petch",system-ui,sans-serif;
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+}
+
+:root{
+  /* Scout tokens. Never pure #fff / #000. */
+  --bg:#f9f7f4;          /* Sand-50   */
+  --card:#fdfcfb;        /* card fill */
+  --card-2:#f4f1ec;
+  --ink:#18181b;         /* Zinc-900  */
+  --ink-2:#3f3f46;
+  --muted:#52525b;
+  --faint:#7a736a;
+  --border:#dcd0c1;      /* Sand-200  */
+  --border-soft:#e7ded2;
+  --brand:#2c867d;       /* ST Teal-700 -- see readme for why not Teal-600 */
+  --brand-soft:#d1f0ec;
+  --good:#2c867d;
+  --warn:#d97706;
+  --crit:#e11d48;
+  --neutral:#866e4f;     /* Sand-600: the achromatic "no signal" slot */
+  --onpole:#fdfcfb;      /* ink that sits ON a filled brand/status block */
+  --code-bg:#f1ede6;
+  --code-ink:#433728;
+  --measure:74ch;
+  --frame:1120px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#18181b; --card:#27272a; --card-2:#202023;
+    --ink:#fafafa; --ink-2:#e4e4e7; --muted:#a1a1aa; --faint:#8b8b93;
+    --border:#3f3f46; --border-soft:#343438;
+    --brand:#3fc0b3; --brand-soft:#10302d; --good:#3fc0b3;
+    --warn:#f59e0b; --crit:#fb7185; --neutral:#b9a182;
+    --onpole:#18181b;
+    --code-bg:#1f1f22; --code-ink:#cfbfaa;
+  }
+}
+/* The viewer's theme toggle stamps data-theme on :root and must win over the
+   media query in BOTH directions -- hence two blocks, not one. */
+:root[data-theme="dark"]{
+  --bg:#18181b; --card:#27272a; --card-2:#202023;
+  --ink:#fafafa; --ink-2:#e4e4e7; --muted:#a1a1aa; --faint:#8b8b93;
+  --border:#3f3f46; --border-soft:#343438;
+  --brand:#3fc0b3; --brand-soft:#10302d; --good:#3fc0b3;
+  --warn:#f59e0b; --crit:#fb7185; --neutral:#b9a182;
+  --onpole:#18181b;
+  --code-bg:#1f1f22; --code-ink:#cfbfaa;
+}
+:root[data-theme="light"]{
+  --bg:#f9f7f4; --card:#fdfcfb; --card-2:#f4f1ec;
+  --ink:#18181b; --ink-2:#3f3f46; --muted:#52525b; --faint:#7a736a;
+  --border:#dcd0c1; --border-soft:#e7ded2;
+  --brand:#2c867d; --brand-soft:#d1f0ec; --good:#2c867d;
+  --warn:#d97706; --crit:#e11d48; --neutral:#866e4f;
+  --onpole:#fdfcfb;
+  --code-bg:#f1ede6; --code-ink:#433728;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink-2);
+  font-family:var(--font-sans);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+
+.frame{max-width:var(--frame);margin:0 auto;padding:0 28px}
+.col{max-width:var(--measure)}
+section{padding:52px 0;border-top:1px solid var(--border-soft)}
+section:first-of-type{border-top:0}
+
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;color:var(--ink);
+  text-wrap:balance;letter-spacing:-.01em;margin:0}
+h1{font-size:clamp(34px,5.5vw,56px);line-height:1.04;letter-spacing:-.025em}
+h2{font-size:30px;line-height:1.15}
+h3{font-size:20px;line-height:1.25;font-weight:600}
+h4{font-size:15px;line-height:1.3;font-weight:600}
+p{margin:0 0 16px}
+p:last-child{margin-bottom:0}
+strong{color:var(--ink);font-weight:650}
+a{color:var(--brand)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+.eyebrow{font-family:var(--font-display);font-weight:600;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  margin:0 0 10px;display:block}
+.lede{font-size:19px;line-height:1.55;color:var(--ink-2)}
+.note{font-size:14px;line-height:1.6;color:var(--muted)}
+code{font-family:var(--font-mono);font-size:.86em;
+  background:var(--code-bg);color:var(--code-ink);padding:1px 5px;
+  clip-path:polygon(2px 0,100% 0,100% calc(100% - 2px),calc(100% - 2px) 100%,0 100%,0 2px)}
+
+/* -- THE CHAMFER ----------------------------------------------------------
+   Scout cuts corners, it does not round them. Two planes: the element paints
+   the 1px outline, ::before paints the fill inset by 1px.
+
+   isolation:isolate + z-index:-1 is load-bearing. It puts the fill above the
+   outline but below ALL content INCLUDING BARE TEXT NODES. The obvious
+   alternative -- `.cham > * {position:relative;z-index:1}` -- only lifts
+   ELEMENTS, so raw text between tags paints behind the fill and vanishes.
+   That bug is invisible in source and only shows up in a render.
+
+   Cards cut top-left + bottom-right (8px). Controls cut all four (4px).
+   Badges/chips 2px. Genuinely round things keep border-radius.
+   ------------------------------------------------------------------------ */
+.cham{position:relative;isolation:isolate;background:var(--border);
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+.cham::before{content:"";position:absolute;inset:1px;z-index:-1;background:var(--card);
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+.cham.flat::before{background:var(--card-2)}
+
+.tag{display:inline-block;font-family:var(--font-display);font-weight:600;
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;padding:5px 9px;
+  background:var(--card-2);color:var(--muted);border:1px solid var(--border);
+  clip-path:polygon(2px 0,calc(100% - 2px) 0,100% 2px,100% calc(100% - 2px),calc(100% - 2px) 100%,2px 100%,0 calc(100% - 2px),0 2px)}
+.tag.brand{background:var(--brand-soft);color:var(--brand);border-color:var(--brand)}
+
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));margin-top:26px}
+.stat{padding:18px}
+.stat .n{font-family:var(--font-display);font-weight:700;font-size:34px;line-height:1;
+  color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+  display:block;margin-bottom:7px}
+.stat .l{font-size:12.5px;line-height:1.4;color:var(--muted);display:block}
+
+.call{margin-top:24px;padding:24px 26px;background:var(--card);
+  border:1px solid var(--brand);border-left:4px solid var(--brand)}
+.call.warn{border-color:var(--warn);border-left-color:var(--warn)}
+.call .eyebrow{color:var(--brand)}
+.call.warn .eyebrow{color:var(--warn)}
+
+/* Wide content scrolls inside its own box; the page body never scrolls sideways. */
+.twrap{overflow-x:auto;margin-top:22px;border:1px solid var(--border);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{text-align:left;padding:12px 16px;vertical-align:top;border-bottom:1px solid var(--border-soft)}
+thead th{font-family:var(--font-display);font-weight:600;font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint);
+  background:var(--card-2);white-space:nowrap;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{color:var(--ink);font-weight:550}
+
+/* Marker is absolutely positioned, NOT a grid track. A grid here promotes any
+   inline child (em, code, a) into its own column and shatters the row. */
+ul.checks{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:9px}
+ul.checks li{position:relative;padding-left:29px;font-size:14.5px;line-height:1.58;color:var(--muted)}
+ul.checks li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;
+  background:var(--brand);
+  clip-path:polygon(2px 0,100% 0,100% calc(100% - 2px),calc(100% - 2px) 100%,0 100%,0 2px)}
+
+footer{padding:44px 0 68px;border-top:1px solid var(--border);
+  font-size:13px;line-height:1.65;color:var(--faint)}
+
+@media (max-width:640px){
+  .frame{padding:0 18px}
+  h2{font-size:25px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+@media print{
+  body{background:#fff}
+  section{page-break-inside:avoid}
+  .cham::before{background:#fff}
+}
+</style>
+</head>
+<body>
+<style>
+/* ---- prototype shell ---------------------------------------------------- */
+body{font-size:14.5px;line-height:1.5}
+.app{display:grid;grid-template-columns:270px minmax(0,1fr) 330px;min-height:100vh}
+.top{grid-column:1/-1;display:flex;align-items:center;gap:16px;padding:0 18px;height:54px;background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:30}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:700;color:var(--ink);font-size:15px;white-space:nowrap}
+.brand svg{width:26px;height:26px}
+.brand small{font:500 12px var(--font-sans);color:var(--muted);margin-left:4px}
+.tabs{display:flex;gap:2px;margin-left:10px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.tabs button{font:600 13px var(--font-sans);color:var(--ink-2);background:none;border:0;padding:17px 12px 15px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs button.on{color:var(--brand);border-bottom-color:var(--brand)}
+.tabs button.hl{background:color-mix(in srgb,var(--brand) 12%,transparent);color:var(--ink);display:inline-flex;align-items:center;gap:6px}
+.tabs button.hl.on{color:var(--brand)}
+.tabs button .tnew{font:700 9.5px var(--font-display);letter-spacing:.08em;text-transform:uppercase;background:var(--brand);color:var(--onpole);padding:2px 5px}
+.tabs button .tcnt{font:700 10.5px var(--font-display);background:var(--crit);color:#fff;min-width:17px;height:17px;padding:0 4px;display:inline-flex;align-items:center;justify-content:center}
+.bban{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 16px;margin-bottom:14px;border:1px solid var(--brand);border-left:4px solid var(--brand);background:color-mix(in srgb,var(--brand) 8%,var(--card))}
+.bban div{flex:1 1 300px}.bban b{display:block;font:700 15px var(--font-display);color:var(--ink)}.bban p{margin:3px 0 0;font-size:13px;color:var(--ink-2)}
+.tright{margin-left:auto;display:flex;align-items:center;gap:10px}
+.theme{display:flex;border:1px solid var(--border);background:var(--card-2)}
+.theme button{width:30px;height:28px;border:0;background:none;color:var(--muted);cursor:pointer;font-size:13px}
+.theme button[aria-pressed="true"]{background:var(--card);color:var(--ink)}
+.cust.back{background:var(--warn);border-color:var(--warn);color:var(--onpole);text-decoration:none;font-weight:700}
+.cust.back:hover{filter:brightness(1.08)}
+.cust.back small{font-weight:500;opacity:.85;margin-left:6px}
+@media (max-width:820px){.cust.back{display:inline-block}.cust.back small{display:none}}
+.cust{font:600 12px var(--font-sans);padding:5px 10px;border:1px solid var(--border);background:var(--card-2);color:var(--ink-2);white-space:nowrap}
+/* guide */
+.guide{background:var(--card-2);border-right:1px solid var(--border);padding:16px 14px;position:sticky;top:54px;height:calc(100vh - 54px);overflow:auto}
+.guide h2{font-size:15px;margin:0 0 2px}.guide .sub{font-size:12px;color:var(--muted);margin:0 0 12px}
+.gsteps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.gsteps li button{width:100%;text-align:left;display:flex;gap:9px;align-items:flex-start;padding:8px 8px;border:1px solid transparent;background:none;cursor:pointer;font:500 13px var(--font-sans);color:var(--ink-2)}
+.gsteps li button .n{flex:0 0 22px;height:22px;display:flex;align-items:center;justify-content:center;font:700 11px var(--font-display);background:var(--card);border:1px solid var(--border);color:var(--muted)}
+.gsteps li.done .n{background:var(--brand);border-color:var(--brand);color:var(--onpole)}
+.gsteps li.cur button{border-color:var(--brand);background:var(--card)}
+.gsteps li.cur .n{border-color:var(--brand);color:var(--brand)}
+.gsteps li.done.cur .n{background:var(--brand);color:var(--onpole)}
+.gsteps small{display:block;font-size:11.5px;color:var(--faint)}
+.gnow{margin-top:14px;padding:12px 12px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--brand)}
+.gnow .k{display:block;font:700 10.5px var(--font-display);letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.gnow p{font-size:12.5px;margin:6px 0 0;color:var(--ink-2)}.gnow .say{font-style:italic;color:var(--muted)}
+.gbtns{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+/* buttons */
+.btn{font:600 12.5px var(--font-sans);padding:7px 12px;border:1px solid var(--border);background:var(--card);color:var(--ink);cursor:pointer;white-space:nowrap;
+  clip-path:polygon(4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px),0 4px)}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.btn.brand{background:var(--brand);border-color:var(--brand);color:var(--onpole)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--brand) 60%,transparent)}50%{box-shadow:0 0 0 5px color-mix(in srgb,var(--brand) 0%,transparent)}}
+/* main */
+main{padding:18px 22px 60px;min-width:0}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:8px}.crumb a{color:var(--brand);cursor:pointer;text-decoration:none}
+.ph{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 16px;margin-bottom:14px}
+.ph .obj{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--brand);color:var(--onpole);font:700 14px var(--font-display)}
+.ph h1{font-size:22px;line-height:1.2}.ph small{display:block;font-size:12.5px;color:var(--muted)}
+.ph .acts{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.card{padding:14px 16px;margin-bottom:14px}
+.card h3{font-size:15px;display:flex;align-items:center;gap:8px;margin:0 0 10px}
+.card h3 .sp{margin-left:auto}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.kpi{padding:12px 14px}.kpi b{display:block;font:700 24px var(--font-display);color:var(--ink);line-height:1.1}.kpi small{font-size:12px;color:var(--muted)}
+.kpi.r b{color:var(--crit)}
+table.t{min-width:0;font-size:13px}table.t td,table.t th{padding:9px 10px;vertical-align:middle}
+table.t td:first-child{white-space:nowrap}table.t tr.click{cursor:pointer}table.t tr.click:hover td{background:color-mix(in srgb,var(--brand) 6%,var(--card))}
+table.t tr.hl td{background:color-mix(in srgb,var(--crit) 7%,var(--card))}
+.dots{display:inline-flex;gap:3px}.dots i{width:9px;height:9px;display:block}
+.g{background:var(--brand)}.w{background:var(--warn)}.r{background:var(--crit)}.s{background:var(--border)}
+.st{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12.5px}.st i{width:8px;height:8px;border-radius:50%;display:block}
+.st.r{background:none;color:var(--crit)}.st.w{background:none;color:var(--warn)}.st.g{background:none;color:var(--brand)}.st.s{background:none;color:var(--faint)}
+.checking td{opacity:.55}
+.lvl{display:inline-block;font:700 10px var(--font-display);letter-spacing:.1em;padding:2px 6px;background:var(--brand);color:var(--onpole);vertical-align:middle}
+.lvl.l2{background:color-mix(in srgb,var(--brand) 70%,var(--ink))}.lvl.l3{background:var(--warn)}.lvl.l4{background:var(--ink);color:var(--bg)}
+.agt{display:inline-block;font:600 10.5px var(--font-display);letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--border);color:var(--muted);background:var(--card-2)}
+/* street */
+.stabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:14px;overflow-x:auto;scrollbar-width:none}
+.stabs button{font:600 13px var(--font-sans);padding:10px 14px;border:0;border-bottom:3px solid transparent;background:none;color:var(--ink-2);cursor:pointer;white-space:nowrap;display:flex;gap:6px;align-items:center}
+.stabs button.on{color:var(--brand);border-bottom-color:var(--brand)}
+.stabs button .bd{width:8px;height:8px;border-radius:50%;display:inline-block}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:14px}
+.loop{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.loop li{display:grid;grid-template-columns:86px minmax(0,1fr);gap:10px;padding:8px 10px;border:1px solid var(--border-soft);background:var(--card);font-size:13px;color:var(--muted)}
+.loop li b{font:700 11px var(--font-display);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding-top:1px}
+.loop li.on{border-color:var(--brand);color:var(--ink)}.loop li.on b{color:var(--brand)}
+.loop li.done b{color:var(--brand)}
+.what{font-size:13.5px;color:var(--ink-2);margin:0 0 10px}
+.prop{padding:12px 14px;margin-top:10px;border:1px solid var(--border);border-left:3px solid var(--brand);background:var(--card)}
+.prop.warn{border-left-color:var(--warn)}.prop.done{border-left-color:var(--border);opacity:.85}
+.prop .ph2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.prop b.t{display:block;font-size:14px;color:var(--ink);margin:6px 0 4px}.prop p{font-size:13px;margin:0 0 8px;color:var(--ink-2)}
+.prop .btns{display:flex;gap:6px;flex-wrap:wrap}
+.okline{font-size:12.5px;color:var(--brand);font-weight:600}
+.posts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.post{padding:10px 8px;text-align:center;border:1px solid var(--border);background:var(--card)}
+.post svg{width:28px;height:60px;display:block;margin:0 auto 4px}
+.post b{display:block;font:700 12px var(--font-display);color:var(--ink)}.post small{font-size:11px;color:var(--muted)}
+.post.r{border-color:var(--crit)}.post.r small{color:var(--crit)}
+.hbar{height:6px;background:var(--card-2);margin-top:6px}.hbar i{display:block;height:100%}
+.spark{display:flex;align-items:flex-end;gap:3px;height:40px}.spark i{width:14px;display:block;background:var(--crit)}.spark i.z{background:var(--border);height:2px}
+.steps6{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.steps6 li{padding:8px;border:1px solid var(--border);background:var(--card);font-size:12px;color:var(--muted)}
+.steps6 li b{display:block;font:700 12px var(--font-display);color:var(--ink);margin-bottom:2px}
+.steps6 li.done{border-color:var(--brand)}.steps6 li.done b{color:var(--brand)}
+.cap{height:10px;background:var(--card-2);border:1px solid var(--border);margin:6px 0 4px;position:relative}.cap i{position:absolute;left:0;top:0;bottom:0;background:var(--brand)}.cap em{position:absolute;top:0;bottom:0;background:var(--warn)}
+.phone{width:200px;border:2px solid var(--ink-2);padding:10px;background:var(--card);margin:0 auto}
+.phone .scr{background:var(--card-2);padding:8px;min-height:250px;display:flex;flex-direction:column;gap:6px}
+.photo{display:flex;gap:8px;align-items:center;padding:6px;background:var(--card);border:1px solid var(--border);font-size:11.5px}
+.photo .th{width:38px;height:30px;flex:0 0 38px;background:var(--border-soft);position:relative}
+.photo .th::after{content:"";position:absolute;inset:6px 8px;border:2px solid var(--muted)}
+.photo.ok{border-color:var(--brand)}.photo.ok .th::after{border-color:var(--brand)}
+.photo.bad{border-color:var(--warn)}.photo.bad .th{filter:blur(1px)}.photo.bad .th::after{border-color:var(--warn);border-style:dashed}
+.photo.run{border-style:dashed}
+.photo b{display:block;color:var(--ink);font-size:11.5px}
+.phone.wide{width:100%;max-width:440px}
+.photo{cursor:pointer}.photo.sel{outline:2px solid var(--brand);outline-offset:-2px}
+.photo .pi{flex:1;min-width:0}.photo .pi small{display:block;font-size:11px;color:var(--muted)}
+.photo .th.img{background-size:cover;background-position:center}.photo .th.img::after{display:none}
+.photo .th{width:46px;height:40px;flex:0 0 46px}
+.ps{display:inline-block;font:700 10px var(--font-display);letter-spacing:.08em;text-transform:uppercase;margin-top:2px;color:var(--faint)}
+.ps.ok{color:var(--brand)}.ps.bad{color:var(--warn)}.ps.run{color:var(--ink-2)}
+.pbtns{display:flex;flex-direction:column;gap:4px}
+.btn.mini{font-size:11.5px;padding:4px 8px}
+.cvs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.cvs li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:8px;padding:6px 8px;border:1px solid var(--border-soft);font-size:12.5px;color:var(--muted)}
+.cvs li b{font:700 11px var(--font-display);letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.cvs li.done{border-color:var(--brand)}.cvs li.done b{color:var(--brand)}.cvs li.on{border-color:var(--ink-2)}.cvs li.warnx{border-color:var(--warn)}.cvs li.warnx b{color:var(--warn)}
+.cvs em{font-style:normal;color:var(--ink);font-weight:600}
+
+/* phone mock */
+.device{width:300px;margin:4px auto 0;padding:12px 10px;background:#18181b;border-radius:38px;box-shadow:0 0 0 2px var(--border)}
+.dscreen{background:var(--bg);border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
+.dstatus{display:flex;justify-content:space-between;align-items:center;padding:8px 18px 4px;font:600 11px var(--font-sans);color:var(--ink)}
+.isl{width:70px;height:18px;background:#18181b;border-radius:10px}
+.dhead{padding:6px 14px 8px;border-bottom:1px solid var(--border)}.dapp{display:block;font:700 10px var(--font-display);letter-spacing:.1em;text-transform:uppercase;color:var(--brand)}
+.dhead b{display:block;font-size:14px;color:var(--ink)}.dhead small{font-size:11px;color:var(--muted)}
+.dprog{display:flex;gap:3px;padding:6px 14px}.dprog i{flex:1;height:4px;background:var(--border)}.dprog i.ok{background:var(--brand)}.dprog i.bad{background:var(--warn)}.dprog i.run{background:var(--ink-2)}
+.dview{position:relative;margin:2px 10px 0;aspect-ratio:300/220;background:#111827;overflow:hidden}
+.dview svg,.dview img{display:block;width:100%;height:100%;object-fit:cover}
+.vb{position:absolute;top:8px;right:8px;font:700 10px var(--font-display);letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;color:#18181b}
+.vb.ok{background:#3fc0b3}.vb.bad{background:#f59e0b}.vb.run{background:#e4e4e7}
+.imgok{position:absolute;left:8px;bottom:8px;font:700 11px var(--font-sans);padding:3px 7px;background:#3fc0b3;color:#18181b}
+.vf{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#e4e4e7;font-size:12px}
+.vf p{margin:0}.vf b{color:#fafafa}
+.vfc{position:absolute;width:22px;height:22px;border-color:#fafafa;border-style:solid;border-width:0}
+.vfc.tl{top:12px;left:12px;border-top-width:3px;border-left-width:3px}.vfc.tr{top:12px;right:12px;border-top-width:3px;border-right-width:3px}
+.vfc.bl{bottom:12px;left:12px;border-bottom-width:3px;border-left-width:3px}.vfc.br{bottom:12px;right:12px;border-bottom-width:3px;border-right-width:3px}
+.scan{position:absolute;left:0;right:0;height:3px;background:#3fc0b3;box-shadow:0 0 12px #3fc0b3;animation:scan 1s linear infinite}
+.scanl{position:absolute;left:8px;bottom:8px;font:700 11px var(--font-sans);padding:3px 7px;background:#18181b;color:#3fc0b3}
+@keyframes scan{0%{top:0}100%{top:100%}}
+.dcap{padding:8px 14px 2px}.dcap b{display:block;font-size:13px;color:var(--ink)}.dcap span{font-size:11.5px;color:var(--muted)}
+.dbtns{display:flex;gap:6px;padding:8px 14px}
+.dbtn{flex:1;font:700 13px var(--font-sans);padding:10px 8px;border:1px solid var(--border);background:var(--card);color:var(--ink);cursor:pointer;border-radius:10px}
+.dbtn.pri{background:var(--brand);border-color:var(--brand);color:var(--onpole)}.dbtn.warn{background:var(--warn);border-color:var(--warn);color:var(--onpole)}
+.dthumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;padding:4px 14px 10px}
+.dth{position:relative;aspect-ratio:1;padding:0;border:2px solid var(--border);background:var(--card-2);cursor:pointer;overflow:hidden;border-radius:6px}
+.dth svg,.dth img{width:100%;height:100%;display:block;object-fit:cover}
+.dth .tn{font:700 12px var(--font-display);color:var(--muted)}
+.dth i{position:absolute;right:2px;bottom:2px;width:8px;height:8px;border-radius:50%;background:transparent}
+.dth.ok i{background:#3fc0b3;box-shadow:0 0 0 1.5px #18181b}.dth.bad i{background:#f59e0b;box-shadow:0 0 0 1.5px #18181b}
+.dth.sel{border-color:var(--ink)}
+.dhome{width:110px;height:4px;background:var(--ink-2);border-radius:2px;margin:2px auto 8px;opacity:.5}
+@media (max-width:820px){.device{width:100%;max-width:300px}}
+.cvpt td{font-size:12px;vertical-align:top}.cvpt td:first-child{white-space:normal;font-weight:600}
+.pg{display:block;font:700 9.5px var(--font-display);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:700}
+.pr{font-weight:600;color:var(--faint)}.cvpt td:nth-child(1){width:26%}.cvpt td:nth-child(3){width:26%}.pr.ok{color:var(--brand)}.pr.x{color:var(--warn)}.pr.d{color:var(--crit);white-space:normal}
+.pb{display:inline-block;font:700 10.5px var(--font-display);padding:2px 6px;color:var(--onpole);background:var(--brand)}.pb.c{background:var(--crit)}.pb.w{background:var(--warn)}.pb.b{background:var(--brand)}
+.prl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}.prl li{display:flex;gap:8px;align-items:baseline;font-size:13px;color:var(--ink);font-weight:600}.prl small{font-weight:400;color:var(--muted);font-size:12px}
+.kwrap{overflow-x:auto;margin:0 -2px}
+.kboard{display:grid;grid-template-columns:repeat(5,minmax(170px,1fr));gap:10px;min-width:880px}
+.app.wide{grid-template-columns:minmax(0,1fr)}.app.wide .cop{display:none}
+.app.wide .guide{position:sticky;top:54px;z-index:20;height:auto;border-right:0;border-bottom:1px solid var(--border);padding:8px 18px;overflow:visible}
+.app.wide .guide h2,.app.wide .guide .sub,.app.wide .gsteps,.app.wide .gnow .say{display:none}
+.app.wide .gnow{margin:0;display:flex;align-items:center;gap:6px 16px;flex-wrap:wrap;padding:8px 12px}
+.app.wide .gnow p{margin:0;flex:1 1 320px}.app.wide .gnow .gbtns{margin:0}
+.app.wide .kboard{min-width:1000px}.app.wide .kcol{min-height:340px}
+@media (max-width:820px){.app.wide .guide{position:static;padding:8px 14px}}
+details.bmore{margin-top:16px;border:1px solid var(--border);background:var(--card)}details.bmore>summary{cursor:pointer;padding:12px 16px;font:600 13px var(--font-sans);color:var(--ink)}details.bmore[open]>summary{border-bottom:1px solid var(--border)}details.bmore .bstack{padding:14px;margin:0}
+.bstack{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:14px;margin-top:14px}
+@media (max-width:1100px){.bstack{grid-template-columns:minmax(0,1fr)}}
+.ph .acts .seg{flex-wrap:wrap}
+.kcol{background:var(--card-2);border:1px solid var(--border);padding:8px;min-height:200px}
+.kh{display:flex;justify-content:space-between;align-items:center;padding:2px 4px 8px}.kh b{font:700 12px var(--font-display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.kh span{font:700 11px var(--font-display);color:var(--muted);background:var(--card);border:1px solid var(--border);padding:1px 7px}
+.kc{background:var(--card);border:1px solid var(--border);padding:9px 10px;margin-bottom:8px;cursor:pointer}
+.kc:hover{border-color:var(--brand)}.kc.open{border-color:var(--brand);box-shadow:inset 3px 0 0 var(--brand)}.kc.dec{box-shadow:inset 3px 0 0 var(--warn)}
+.kt{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.kk{font:700 9.5px var(--font-display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.kid{margin-left:auto;font:600 10.5px var(--font-mono);color:var(--faint)}
+.kc>b{display:block;font-size:12.5px;color:var(--ink);margin:6px 0;line-height:1.35}
+.km{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.anc{font-size:11px;color:var(--muted)}
+.who{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--ink-2)}
+.who i{display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;font:700 9px var(--font-display);font-style:normal}
+.who.agent i{background:var(--brand);color:var(--onpole);clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px)}
+.who.person i{background:var(--ink);color:var(--bg);border-radius:50%}
+.kd{margin-top:8px;border-top:1px dashed var(--border);padding-top:6px}.kd p{font-size:11.5px;color:var(--ink-2);margin:4px 0}.kd span{display:block;font:700 9.5px var(--font-display);letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+.kempty{font-size:11.5px;color:var(--faint);padding:6px 4px;margin:0}
+.seg{display:flex;border:1px solid var(--border);background:var(--card-2)}.seg button{font:600 12px var(--font-sans);padding:6px 10px;border:0;background:none;color:var(--ink-2);cursor:pointer}.seg button.on{background:var(--ink);color:var(--bg)}
+.roles{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}.roles li{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2)}.roles li span:last-child{flex:1 1 200px}
+.ut{min-width:0!important}table.ut th,table.ut td{white-space:normal!important}.ut td{font-size:12px;vertical-align:top}.ut td:last-child{width:46%}.ex,.gp,.nw{display:inline-block;font:700 9.5px var(--font-display);letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;margin-right:4px}
+.ex{background:var(--brand);color:var(--onpole)}.gp{background:var(--warn);color:var(--onpole)}.nw{background:var(--ink);color:var(--bg)}
+.fields{display:grid;grid-template-columns:140px minmax(0,1fr);gap:6px 12px;font-size:13px;margin:0}
+.fields dt{color:var(--muted)}.fields dd{margin:0;color:var(--ink)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.fields dd .chips{display:flex}.fields dd{min-width:0}.chip{font-size:11.5px;padding:3px 8px;border:1px solid var(--border);background:var(--card-2);color:var(--ink-2)}
+.log{list-style:none;margin:0;padding:0}.log li{display:grid;grid-template-columns:92px 130px minmax(0,1fr);gap:10px;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13px}
+.log time{font:600 12px var(--font-display);color:var(--brand)}.log .who{font-size:12px;color:var(--muted)}
+.mem{padding:10px 12px;background:var(--brand-soft);margin-top:8px;font-size:13px;color:var(--ink);font-style:italic}
+.empty{font-size:13px;color:var(--faint);padding:10px 0}
+/* copilot */
+.cop{border-left:1px solid var(--border);background:var(--card);display:flex;flex-direction:column;position:sticky;top:54px;height:calc(100vh - 54px)}
+.coph{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--border)}
+.coph svg{width:22px;height:22px}.coph b{font-family:var(--font-display);color:var(--ink)}.coph small{display:block;font-size:11.5px;color:var(--muted)}
+.chat{flex:1;overflow:auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:92%;font-size:13px;padding:9px 11px}
+.m.u{align-self:flex-end;background:var(--ink);color:var(--bg)}
+.m.a{align-self:flex-start;background:var(--card-2);border:1px solid var(--border);color:var(--ink-2)}
+.m.a .cite{display:block;margin-top:6px;font-size:11px;color:var(--faint)}
+.m.a b{color:var(--ink)}
+.sugg{display:flex;flex-wrap:wrap;gap:6px;padding:8px 14px;border-top:1px solid var(--border-soft)}
+.sugg button{font:500 12px var(--font-sans);padding:5px 9px;border:1px solid var(--border);background:var(--card-2);color:var(--ink-2);cursor:pointer;text-align:left}
+.sugg button.pulse{border-color:var(--brand);color:var(--brand);animation:pulse 1.6s infinite}
+.cin{display:flex;gap:6px;padding:10px 14px;border-top:1px solid var(--border)}
+.cin input{flex:1;min-width:0;font:500 13px var(--font-sans);padding:8px 10px;border:1px solid var(--border);background:var(--bg);color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--bg);font-size:13px;padding:10px 16px;z-index:50;max-width:90vw}
+.hide{display:none!important}
+.ring{display:block}
+@media (max-width:1180px){.app{grid-template-columns:240px minmax(0,1fr)}.cop{grid-column:1/-1;position:static;height:auto;border-left:0;border-top:1px solid var(--border)}.chat{max-height:360px}}
+@media (max-width:820px){.app{grid-template-columns:minmax(0,1fr)}.top{flex-wrap:wrap;height:auto;padding:8px 14px 0;gap:6px 12px}.tabs{order:3;flex:0 0 100%;margin-left:0}.tabs button{padding:10px 10px 9px}.guide,.cop{top:auto}.guide{position:static;height:auto;border-right:0;border-bottom:1px solid var(--border)}
+  .gsteps{flex-direction:row;overflow-x:auto;scrollbar-width:none}.gsteps li{flex:0 0 auto}.gsteps li button{width:auto}.gsteps small{display:none}
+  .two{grid-template-columns:minmax(0,1fr)}.btn{white-space:normal}.kpis{grid-template-columns:1fr 1fr}.posts{grid-template-columns:repeat(3,minmax(0,1fr))}.steps6{grid-template-columns:1fr 1fr}.cop{grid-column:1}
+  .brand small,.cust{display:none}.log li{grid-template-columns:70px minmax(0,1fr)}.log .who{display:none}main{padding:14px 14px 40px}}
+.prop.spec{border-left-color:var(--warn)}.prop.spec .agt{color:var(--warn);border-color:var(--warn)}.prop.spec p.qa{margin:6px 0 0;font-size:13px;line-height:1.5}.prop.spec p.qa b{font-weight:700}
+.sv{margin-left:6px}
+.ws{display:grid;grid-template-columns:210px minmax(0,1fr);gap:14px;align-items:start}
+.wsnav{border:1px solid var(--border);background:var(--card);padding:12px 0;font-size:13px}
+.wsnav h4{font:600 10.5px var(--font-display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 14px 4px}
+.wsnav h4:first-child{margin-top:0}
+.wsnav button{display:flex;gap:8px;align-items:center;width:100%;text-align:left;border:0;background:none;padding:6px 14px;font:500 13px var(--font-sans);color:var(--ink);cursor:pointer}
+.wsnav button:hover{background:var(--card-2)}.wsnav button i{width:8px;height:8px;display:block;flex:0 0 8px}
+.wsnav button em{margin-left:auto;font-style:normal;font-size:11px;color:var(--muted)}
+.wsg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wsg .card{margin:0}.wsg h3 .agt{margin-left:auto}
+.minik{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-bottom:10px}.minik div{border:1px solid var(--border);background:var(--card-2);padding:6px 8px}.minik b{display:block;font:700 18px var(--font-display)}.minik small{font-size:11px;color:var(--muted)}
+.mlist{list-style:none;margin:0;padding:0;font-size:13px}.mlist li{display:flex;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--border)}.mlist li:first-child{border-top:0}.mlist li span:last-child{margin-left:auto;font-size:11.5px;color:var(--muted)}
+.wsgap{border:1px dashed var(--border);padding:10px 12px;font-size:12.5px;color:var(--ink-2);margin-top:14px}
+@media (max-width:1100px){.ws{grid-template-columns:minmax(0,1fr)}.wsg{grid-template-columns:minmax(0,1fr)}.minik{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="brand"><svg class="scout-mark-sm" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none"><path opacity="0.75" fill="#EDE7E0" d="M45 9.00098L44.9932 39.5869L39.582 45.001H9L3.00684 39.001L3 8.41699L8.41113 3.00391L39 3L45 9.00098ZM8.8252 4.00293L4 8.83008L4.00586 38.5859L9.41504 44.001H39.168L43.9932 39.1719L43.999 9.41406L38.5859 4L8.8252 4.00293Z"></path><path d="M33 18.0039L13 18L22 24V35L33 18.0039Z" fill="#36A398"></path><path d="M24 2L22 0H7L0 7V22L2 24H5V9L9 5H24V2Z" fill="#DCD0C1"></path><path d="M24 46L26 48L41 48L48 41L48 26L46 24L43 24L43 39L39 43L24 43L24 46Z" fill="#DCD0C1"></path></svg>Sitetracker<small>Field Assets</small></div>
+    <nav class="tabs" id="tabs"></nav>
+    <div class="tright"><a class="cust back" href="index.html" title="Not part of the prototype">&larr; Back to the Asset Steward<small>(outside the prototype)</small></a><span class="cust">Prototype &middot; Ubitricity &middot; made-up data</span>
+      <div class="theme" role="group" aria-label="Theme"><button data-theme-set="light" aria-pressed="false" title="Light">&#9788;</button><button data-theme-set="dark" aria-pressed="false" title="Dark">&#9790;</button></div></div>
+  </header>
+  <aside class="guide" id="guide"></aside>
+  <main id="main"></main>
+  <aside class="cop">
+    <div class="coph"><svg class="scout-mark-sm" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none"><path opacity="0.75" fill="#EDE7E0" d="M45 9.00098L44.9932 39.5869L39.582 45.001H9L3.00684 39.001L3 8.41699L8.41113 3.00391L39 3L45 9.00098ZM8.8252 4.00293L4 8.83008L4.00586 38.5859L9.41504 44.001H39.168L43.9932 39.1719L43.999 9.41406L38.5859 4L8.8252 4.00293Z"></path><path d="M33 18.0039L13 18L22 24V35L33 18.0039Z" fill="#36A398"></path><path d="M24 2L22 0H7L0 7V22L2 24H5V9L9 5H24V2Z" fill="#DCD0C1"></path><path d="M24 46L26 48L41 48L48 41L48 26L46 24L43 24L43 39L39 43L24 43L24 46Z" fill="#DCD0C1"></path></svg><div><b>Operations manager</b><small>Agent &middot; London boroughs &middot; talks to the street minions</small></div></div>
+    <div class="chat" id="chat"></div>
+    <div class="sugg" id="sugg"></div>
+    <form class="cin" id="cform"><input id="cinput" placeholder="Ask about your streets&hellip;" aria-label="Ask the operations manager"><button class="btn pri" type="submit">Ask</button></form>
+  </aside>
+</div>
+<div class="toast hide" id="toast"></div>
+<input type="file" id="fvfile" accept="image/*" capture="environment" class="hide" aria-hidden="true">
+
+<script>
+(function(){
+"use strict";
+var JOBS=["PM generation fix","Visit planning","Cycle check","Health score","Repair or replace","Site commissioning","Photo checks and nameplates","Parts ready","Stock true","Warranty claims","Billable and contract work","Compliance certificates"];
+var STREETS=[["Station Rd","Bexley",6,"gggggggggggg"],["Church Ln","Bexley",8,"gggwssgggggg"],["Park Ave","Bexley",5,"gggggggggggg"],["Mill Hill","Bexley",10,"ggggggggwggg"],["Oak Rd","Hammersmith",4,"gggggggggggg"],["Grove Pl","Hammersmith",12,"gggggggwgggg"],["King St","Hammersmith",6,"gggggggggggg"],["Elm Gr","Tower Hamlets",8,"ggggggggggwg"],["Bow Rd","Tower Hamlets",20,"gggggggggggg"],["Mile End Ln","Tower Hamlets",16,"gwgggggggggg"],["Vine St","Bexley",4,"gggggggggggg"],["Hall Pl","Bexley",6,"gggggggggggg"]];
+var POSTS=["LP-11","LP-12","LP-13","LP-14","LP-15","LP-16"];
+var STEPS=[
+ {id:"hb",t:"Morning heartbeat",s:"06:00 &middot; every street",view:"home",what:"On Home, press <b>Run 06:00 heartbeat</b>. Each street&rsquo;s minion runs its light check: 6 steps, no AI conversation.",say:"Every street has its own agent. Nobody asked it to run; it just wakes up."},
+ {id:"ask",t:"Ask the operations manager",s:"07:15 &middot; Sam, ops manager",view:"home",what:"In the operations manager panel, click <b>Which streets need me today?</b>",say:"The operations manager doesn&rsquo;t re-read 640 streets. It asks the minions for their colour. One step, no AI tokens."},
+ {id:"open",t:"Open the red street",s:"Station Rd, Bexley",view:"home",what:"Click <b>Station Rd</b> in the table.",say:"One street, six lamppost chargers, one minion that knows all of it."},
+ {id:"health",t:"Asset Health finds the fault",s:"LP-14 tripping",view:"street:health",what:"On the <b>Asset Health</b> tab, review LP-14 and press <b>Approve repair job</b>.",say:"Same fault as March. It asks the Specialist first, then drafts the repair before anyone has logged in."},
+ {id:"pm",t:"PM Autopilot plans one visit",s:"Repair + yearly checks",view:"street:pm",what:"On <b>PM Autopilot</b>, read the plan and press <b>Approve plan</b>.",say:"This isn&rsquo;t a list of what&rsquo;s due. It bundles, checks deadlines and the van, and shows the saving."},
+ {id:"parts",t:"Parts Autopilot loads the van",s:"RCD on Van 12",view:"street:parts",what:"On <b>Parts Autopilot</b>, press <b>Reserve on Van 12</b>.",say:"No second trip because the part wasn&rsquo;t on the van."},
+ {id:"photos",t:"Field Verification checks photos",s:"Thu 11:40 &middot; on site",view:"street:fv",what:"On <b>Field Verification</b>, take or upload each photo on Dev&rsquo;s phone (or <b>Take all remaining photos</b>), then <b>Retake</b> the blurry one.",say:"Computer Vision is its eyes. It asks for the retake while Dev is still on the street."},
+ {id:"claim",t:"Job closes: warranty claim",s:"Thu 12:05",view:"street:wb",what:"On <b>Warranty &amp; Billing</b>, press <b>Close job</b>, then <b>Review and send</b>.",say:"It drafts the claim with the evidence. A person sends it."},
+ {id:"night",t:"Nightly: it remembers",s:"Thu 22:00",view:"street:log",what:"On <b>Memory &amp; log</b>, press <b>Run 22:00 nightly</b>.",say:"Next time it starts from what it learned."},
+ {id:"brief",t:"Monday brief",s:"Mon 06:30",view:"brief",what:"Open <b>Monday brief</b> in the top bar.",say:"Everything the minions did, and the three things that still need a person."}
+];
+function fresh(){return {view:"home",tab:"overview",step:0,done:{},hb:"idle",hbi:-1,asked:false,repair:false,plan:false,parts:false,fv:fvNew(),retake:false,closed:false,claim:false,night:false,chat:[["a","Hi Sam. I talk to every street&rsquo;s Asset Steward. Ask me what needs you, or pick a question below."]],
+  log:[["Wed 22:00","Asset Steward","Nightly check: 6 posts healthy. No changes."]],mem:["LP-14 had an RCD replaced in March (job J-20311).","Van 12 covers Bexley."]}}
+var st=fresh();try{if(location.hash==='#board')st.view='board';else if(location.hash==='#workspace')st.view='ws'}catch(_){}
+var $=function(id){return document.getElementById(id)};
+
+function stState(){ // Station Rd slices
+  var s="gggggggggggg".split("");
+  if(st.hb==="done"){s[3]="r"}
+  if(st.repair&&!st.plan){s[1]="w"}
+  if(st.fv&&fvBad()){s[6]="w"}
+  if(st.closed&&!st.claim){s[9]="w"}
+  if(st.night){s[3]="g"}
+  return s}
+function streetStates(i){return i===0?(st.hb==="idle"?"gggggggggggg".split(""):stState()):STREETS[i][3].split("")}
+function roll(s){return s.indexOf("r")>=0?"r":s.indexOf("w")>=0?"w":s.indexOf("s")>=0?"s":"g"}
+var LBL={g:"Good",w:"Attention",r:"Problem",s:"Not reporting"};
+function ring(s,size){var n=s.length,o=[],R=48,r=28;for(var i=0;i<n;i++){var a0=-Math.PI/2+i*2*Math.PI/n+.03,a1=-Math.PI/2+(i+1)*2*Math.PI/n-.03;
+  function p(a,rad){return (50+rad*Math.cos(a)).toFixed(2)+" "+(50+rad*Math.sin(a)).toFixed(2)}
+  o.push('<path d="M'+p(a0,R)+" A"+R+" "+R+" 0 0 1 "+p(a1,R)+" L"+p(a1,r)+" A"+r+" "+r+" 0 0 0 "+p(a0,r)+'Z" style="fill:var(--'+({g:"brand",w:"warn",r:"crit",s:"border"})[s[i]]+')"><title>'+JOBS[i]+": "+LBL[s[i]]+'</title></path>')}
+  return '<svg class="ring" viewBox="0 0 100 100" width="'+size+'" height="'+size+'" aria-hidden="true">'+o.join("")+'</svg>'}
+function dots(s){return '<span class="dots">'+s.map(function(c,i){return '<i class="'+c+'" title="'+JOBS[i]+'"></i>'}).join("")+'</span>'}
+function stl(c){return '<span class="st '+c+'"><i class="'+c+'"></i>'+LBL[c]+'</span>'}
+function lv(n){return '<span class="lvl l'+n+'">L'+n+'</span>'}
+function cur(){return STEPS[st.step]}
+function isCur(id){return cur()&&cur().id===id}
+function complete(id){var i=STEPS.findIndex(function(x){return x.id===id});if(i<0)return;st.done[id]=true;if(st.step===i){st.step=Math.min(i+1,STEPS.length-1);if(i===STEPS.length-1)st.step=i}}
+function toast(t){var e=$("toast");e.innerHTML=t;e.classList.remove("hide");clearTimeout(toast.h);toast.h=setTimeout(function(){e.classList.add("hide")},2600)}
+function addLog(t,w,x){st.log.unshift([t,w,x])}
+
+/* ---------- top tabs ---------- */
+function renderTabs(){var T=[["home","Home"],["street","Station Rd"],["board","Board"],["ws","Workspace"],["brief","Monday brief"]];
+  $("tabs").innerHTML=T.map(function(t){var on=st.view===t[0];var pul=(t[0]==="brief"&&isCur("brief"));if(t[0]==="board"){var nd=notches().filter(function(x){return x.c==="decide"}).length;return '<button data-nav="board" class="hl'+(on?" on":"")+'" title="The same day as a Kanban board">&#9638; Board'+(nd?'<span class="tcnt" title="Waiting on a person">'+nd+'</span>':'<span class="tnew">New</span>')+'</button>'}
+   return '<button data-nav="'+t[0]+'" class="'+(on?"on":"")+(pul?" pulse":"")+'">'+t[1]+'</button>'}).join("")}
+
+/* ---------- guide ---------- */
+function renderGuide(){var c=cur();
+  var li=STEPS.map(function(s,i){var cls=(st.done[s.id]?"done":"")+(i===st.step?" cur":"");return '<li class="'+cls+'"><button data-gostep="'+i+'"><span class="n">'+(st.done[s.id]?"&#10003;":(i+1))+'</span><span>'+s.t+'<small>'+s.s+'</small></span></button></li>'}).join("");
+  $("guide").innerHTML='<h2>Demo guide</h2><p class="sub">Ubitricity &middot; one street, five agents, one day.</p><ol class="gsteps">'+li+'</ol>'+
+   '<div class="gnow"><span class="k">Step '+(st.step+1)+' of '+STEPS.length+'</span><p>'+c.what+'</p><p class="say">&ldquo;'+c.say+'&rdquo;</p>'+
+   '<div class="gbtns"><button class="btn brand" data-auto="1"'+(st.done[c.id]?" disabled":"")+'>Do it for me</button><button class="btn" data-reset="1">Reset demo</button></div></div>'}
+
+/* ---------- home ---------- */
+function renderHome(){var rows=STREETS.map(function(r,i){var s=streetStates(i),rr=roll(s);var chk=st.hb==="run"&&i>st.hbi;var hl=(i===0&&st.hb==="done");
+   var last=st.hb==="idle"?"Yesterday 06:00":(chk?"checking&hellip;":"Today 06:00");
+   return '<tr class="click'+(chk?" checking":"")+(hl?" hl":"")+'" data-open="'+i+'"><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+dots(s)+'</td><td>'+(chk?'<span class="st s">&hellip;</span>':stl(rr))+'</td><td>'+last+'</td></tr>'}).join("");
+  var red=0,att=0,down=0;STREETS.forEach(function(r,i){var x=roll(streetStates(i));if(x==="r")red++;if(x==="w"||x==="s")att++});down=(st.hb!=="idle"&&!st.night)?1:0;
+  var hbBtn=st.hb==="idle"?'<button class="btn brand'+(isCur("hb")?" pulse":"")+'" data-act="hb">Run 06:00 heartbeat</button>':(st.hb==="run"?'<button class="btn" disabled>Checking streets&hellip;</button>':'<span class="okline">&#10003; Heartbeat done: 12 streets, 99 posts, 0.4 s, 0 AI tokens</span>');
+  return '<div class="crumb">Field Assets &rsaquo; Asset Stewards</div>'+
+  '<div class="cham bban"><div><b>&#9638; See today as a Kanban board</b><p>Every agent and person on one Notchi board. Cards move as you run the demo.</p></div><button class="btn pri" data-nav="board">Open the board &rarr;</button></div>'+
+  '<div class="cham ph"><span class="obj">AS</span><div><h1>Asset Stewards &middot; London boroughs</h1><small>One minion per street &middot; light check daily at 06:00, deep check monthly, and on events</small></div><div class="acts">'+hbBtn+'</div></div>'+
+  '<div class="kpis"><div class="cham kpi"><b>12</b><small>streets with a minion</small></div><div class="cham kpi"><b>99</b><small>lamppost chargers</small></div><div class="cham kpi'+(red?" r":"")+'"><b>'+red+'</b><small>streets with a problem</small></div><div class="cham kpi"><b>'+down+'</b><small>posts down now</small></div></div>'+
+  '<div class="cham card"><h3>Streets <span class="agt">worst slice sets the colour</span><span class="sp note" style="font-size:12px;font-weight:400">Click a street to open its minion</span></h3><div class="twrap" style="margin-top:0"><table class="t"><thead><tr><th>Street</th><th>Borough</th><th>Posts</th><th>12 jobs</th><th>Status</th><th>Last heartbeat</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>'}
+
+/* ---------- street ---------- */
+var TABS=[["overview","Overview"],["health","Asset Health"],["pm","PM Autopilot"],["parts","Parts Autopilot"],["fv","Field Verification"],["wb","Warranty &amp; Billing"],["log","Memory &amp; log"]];
+function tabBadge(k){var s=stState();var m={health:s[3],pm:s[1],fv:s[6],wb:s[9]};var c=m[k];if(!c||st.hb==="idle")return"";return c==="g"?"":'<i class="bd '+c+'"></i>'}
+function loopBox(items,stage){var names=["Notice","Connect","Decide","Act","Remember"];
+  return '<ol class="loop">'+names.map(function(n,i){return '<li class="'+(i<stage?"done":"")+(i===stage?" on":"")+'"><b>'+n+'</b><span>'+items[i]+'</span></li>'}).join("")+'</ol>'}
+function postSvg(c){return '<svg viewBox="0 0 28 60" aria-hidden="true"><rect x="12" y="4" width="4" height="54" style="fill:var(--border)"/><rect x="7" y="34" width="14" height="16" style="fill:var(--card-2);stroke:var(--'+(c==="r"?"crit":"ink-2")+');stroke-width:1.5"/><rect x="10" y="37" width="8" height="4" style="fill:var(--'+(c==="r"?"crit":"brand")+')"/></svg>'}
+function renderStreet(){var s=st.hb==="idle"?"gggggggggggg".split(""):stState(),rr=roll(s);
+  var head='<div class="crumb"><a data-nav="home">Asset Stewards</a> &rsaquo; Station Rd, Bexley</div>'+
+   '<div class="cham ph">'+ring(s,64)+'<div><h1>Station Rd, Bexley</h1><small>6 lamppost chargers &middot; council contract: London Borough of Bexley &middot; covered by Van 12</small></div><div class="acts">'+stl(rr)+'<span class="agt">Minion &middot; Asset Steward</span><div class="seg sv" role="group" aria-label="View">'+[["list","List"],["board","Board"]].map(function(x){return '<button data-sview="'+x[0]+'" class="'+((st.sview||"list")===x[0]?"on":"")+'">'+x[1]+'</button>'}).join("")+'</div></div></div>';
+  if(st.sview==="board")return head+streetBoard();
+  var tabs='<div class="stabs">'+TABS.map(function(t){var pul=cur().view==="street:"+t[0]&&st.tab!==t[0];return '<button data-tab="'+t[0]+'" class="'+(st.tab===t[0]?"on":"")+(pul?" pulse":"")+'">'+t[1]+tabBadge(t[0])+'</button>'}).join("")+'</div>';
+  var body=({overview:tOverview,health:tHealth,pm:tPM,parts:tParts,fv:tFV,wb:tWB,log:tLog})[st.tab]();
+  return head+tabs+body}
+var STREET_ANC=["Station Rd","LP-14","Van 12"];
+function streetBoard(){var ns=notches().filter(function(x){return STREET_ANC.indexOf(x.a)>=0});
+  return '<div class="cham card"><h3>Station Rd as a board <span class="sp note" style="font-size:12px;font-weight:400">Same data as the tabs, as Notchi notches anchored to this street</span></h3>'+(st.hb==="idle"?'<p class="note" style="font-size:12.5px;margin:0 0 10px">Only the heartbeat is here until the minion runs. Run the 06:00 heartbeat on Home and watch cards appear.</p>':'')+'<div class="kwrap"><div class="kboard">'+kcols(ns)+'</div></div><p class="note" style="font-size:12px;margin-top:8px">Click a card for its goal and receipt. Switch back to List for the agent tabs. The whole Bexley fleet is on the Board tab.</p></div>'}
+function pending(){var p=[];
+  if(st.hb==="done"&&!st.repair)p.push(["Asset Health",2,"Approve repair job for LP-14","health","P2","Down: residents can&rsquo;t charge &middot; Specialist consulted"]);
+  if(st.repair&&!st.plan)p.push(["PM Autopilot",2,"Approve Thursday&rsquo;s plan","pm","P2","Carries the P2 repair, with P5 checks"]);
+  if(st.plan&&!st.parts)p.push(["Parts Autopilot",2,"Reserve the RCD on Van 12","parts","P2","Needed for the P2 repair"]);
+  if(fvBad())p.push(["Field Verification",1,"Waiting for Dev&rsquo;s retake","fv","P6","Record"]);
+  if(st.closed&&!st.claim)p.push(["Warranty &amp; Billing",3,"Review and send claim WC-0412","wb","P6","Money"]);
+  return p}
+function tOverview(){var s=stState();
+  var posts=POSTS.map(function(p,i){var c=(i===3&&st.hb!=="idle"&&!st.night)?"r":"g";return '<div class="post '+c+'">'+postSvg(c)+'<b>'+p+'</b><small>'+(c==="r"?"Tripping":"Charging OK")+'</small></div>'}).join("");
+  var pend=pending();
+  pend.sort(function(a,b){return a[4]<b[4]?-1:1});var pl=pend.length?pend.map(function(x){return '<div class="prop"><div class="ph2"><span class="pb '+(x[4]<'P4'?'c':'b')+'">'+x[4]+'</span><span class="agt">'+x[0]+'</span>'+lv(x[1])+'<span>'+x[5]+'</span></div><b class="t">'+x[2]+'</b><div class="btns"><button class="btn" data-tab="'+x[3]+'">Open</button></div></div>'}).join(""):'<p class="empty">'+(st.hb==="idle"?"Nothing yet. The minion runs at 06:00.":"Nothing waiting for you on this street.")+'</p>';
+  var slices=JOBS.map(function(j,i){return '<li style="display:flex;gap:7px;align-items:center;font-size:12.5px"><i class="'+(st.hb==="idle"?"g":s[i])+'" style="width:9px;height:9px;display:block"></i>'+j+'</li>'}).join("");
+  return '<div class="two"><div><div class="cham card"><h3>The minion&rsquo;s 12 jobs</h3><ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 12px">'+slices+'</ul></div>'+
+   '<div class="cham card"><h3>Waiting for you</h3>'+pl+'</div></div>'+
+   '<div><div class="cham card"><h3>Posts on this street</h3><div class="posts">'+posts+'</div></div>'+
+   '<div class="cham card"><h3>What comes first on this street</h3><ol class="prl"><li><span class="pb c">P1</span>Safety <small>none today</small></li><li><span class="pb c">P2</span>Down <small>'+(st.hb!=="idle"&&!st.night?"LP-14: trips on every session":"none")+'</small></li><li><span class="pb c">P3</span>Repeated faults <small>none</small></li><li><span class="pb w">P4</span>Degrading <small>none</small></li><li><span class="pb w">P5</span>Due work <small>yearly checks, all 6 posts, by 31 Oct</small></li><li><span class="pb b">P6</span>Records and money <small>'+(st.claim?"claim WC-0412 sent":(st.closed?"claim WC-0412 to send":"none yet"))+'</small></li></ol><p class="note" style="font-size:11.5px;margin-top:6px">Safety beats down beats repeated faults. Ties go to the nearest contract deadline.</p></div>'+'<div class="cham card"><h3>What this minion does</h3><p class="what">It belongs to the street, not to a person. Every morning it checks each post, open jobs and due dates, then drafts the few things a person needs to approve. Every change is logged and can be undone. Money, safety and messages to the council always go to a person.</p></div></div></div>'}
+function tHealth(){var stage=st.hb==="idle"?-1:(st.repair?4:2);
+  var rows=POSTS.map(function(p,i){var bad=i===3&&st.hb!=="idle"&&!st.night;var sc=bad?31:[92,88,95,0,90,86][i];if(i===3&&st.night)sc=78;
+   return '<tr'+(bad?' class="hl"':'')+'><td><b>'+p+'</b></td><td style="width:34%"><span style="font-weight:600;color:var(--'+(bad?"crit":"ink")+')">'+sc+'</span><div class="hbar"><i style="width:'+sc+'%;background:var(--'+(bad?"crit":"brand")+')"></i></div></td><td>'+(bad?"9 trips since 00:00 &middot; ground fault":"0 trips")+'</td><td>'+(bad?stl("r"):stl("g"))+'</td></tr>'}).join("");
+  var spark='<div class="spark">'+[0,2,3,1,2,1,0].map(function(v){return v?'<i style="height:'+(v*12)+'px"></i>':'<i class="z"></i>'}).join("")+'</div><p class="note" style="font-size:11.5px;margin:2px 0 0">LP-14 trips by hour, 00:00 to 06:00</p>';
+  var spec='<div class="prop spec"><div class="ph2"><span class="agt">Specialist</span><span>Asked before escalating</span></div><p class="qa"><b>Minion asked:</b> LP-14 tripped 9 times overnight. It&rsquo;s the second RCD failure in 7 months. Is this a one-off?</p><p class="qa"><b>Specialist answered:</b> No. The same RCD batch (A) failed on 11 of 99 posts this year. Fit batch B. If LP-14 fails a third time, replace the charger unit.</p><p class="note" style="font-size:11.5px;margin:6px 0 0">The minion got an engineer&rsquo;s answer without waking a person. Notch N-103 on the board.</p></div>';
+  var prop=st.hb==="idle"?'<p class="empty">Run the 06:00 heartbeat first.</p>':
+   (!st.repair?spec+'<div class="prop"><div class="ph2"><span class="agt">Asset Health</span>'+lv(2)+'<span>One tap</span></div><b class="t">Repair LP-14: replace the RCD</b><p>Same ground-fault code as March (J-20311, RCD replaced). Health 31. Drafted job J-30412 with the Specialist&rsquo;s advice: fit RCD batch B.</p><div class="btns"><button class="btn pri'+(isCur("health")?" pulse":"")+'" data-act="repair">Approve repair job</button><button class="btn" data-act="noop">Change</button></div></div>'+
+     '<div class="prop warn"><div class="ph2"><span class="agt">Asset Health</span>'+lv(4)+'<span>Only people decide</span></div><b class="t">Repair or replace?</b><p>Not yet. If the RCD fails a third time, it will bring you the cost of repair against a new charger unit.</p></div>':
+     spec+'<div class="prop done"><span class="okline">&#10003; Job J-30412 created and sent to PM Autopilot to find the best visit.</span></div>');
+  return '<div class="two"><div><div class="cham card"><h3>How Asset Health works here</h3><p class="what">Scores each post from its charging sessions, faults and past jobs. Flags the ones crossing the watch line.</p>'+
+   loopBox(["LP-14 tripped 9 times overnight.","Same fault as March. Asks the Specialist: this RCD batch failed on 11 of 99 posts.","Drafting a repair is level 2: one tap.","Drafts job J-30412 for you to approve.","Notes the second failure in 7 months."],stage)+'<div class="prop" style="border-left-color:var(--border)"><div class="ph2"><span class="agt">Future scope</span><span>SCADA</span></div><p style="margin:6px 0 0">With the charger back-office alarms (SCADA) connected, the first trip wakes the minion straight away, not at 06:00. Read-only: it never resets a charger remotely.</p></div></div></div>'+
+   '<div><div class="cham card"><h3>Post health <span class="sp">'+(st.hb==="idle"?"":spark)+'</span></h3><div class="twrap" style="margin-top:0"><table class="t"><thead><tr><th>Post</th><th>Health</th><th>Last 24 h</th><th>Status</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>'+
+   '<div class="cham card"><h3>For you</h3>'+prop+'</div></div></div>'}
+function tPM(){var stage=!st.repair?-1:(st.plan?5:3);
+  var s6=[["Reads","PM plans, J-30412, posts, council contract, vans."],["Checks","Yearly checks for all 6 posts generated. None missing."],["Bundles","Repair + 6 yearly checks, Thu window."],["Loads","Asks Parts Autopilot: RCD needed."],["Proposes","One visit, saving shown."],["Writes","Updates jobs, hands to Dispatch."]];
+  var doneN=!st.repair?0:(st.plan?6:5);
+  var steps='<ol class="steps6">'+s6.map(function(x,i){return '<li class="'+(i<doneN?"done":"")+'"><b>'+(i+1)+'. '+x[0]+'</b>'+x[1]+'</li>'}).join("")+'</ol>';
+  var plan=!st.repair?'<p class="empty">Waiting for a job to plan. Approve the LP-14 repair on Asset Health first.</p>':
+   '<div class="prop'+(st.plan?" done":"")+'"><div class="ph2"><span class="agt">PM Autopilot</span>'+lv(2)+'<span>One tap</span></div><b class="t">Thursday visit, Station Rd: LP-14 repair + yearly electrical checks on all 6 posts</b>'+
+   '<dl class="fields"><dt>Deadline</dt><dd>Yearly checks due 31 Oct (council contract). Repair: today&rsquo;s priority.</dd><dt>Van</dt><dd>Van 12, Dev &middot; parts space OK</dd><dt>Saving</dt><dd>1 trip, about 40 minutes and 11 miles (made up)</dd><dt>Guardrail</dt><dd>No required check is skipped or moved past its deadline.</dd></dl>'+
+   (st.plan?'<p class="okline" style="margin-top:8px">&#10003; Plan approved. Jobs updated and handed to Dispatch: Dev, Thu 09:00&ndash;12:00.</p>':'<div class="btns" style="margin-top:10px"><button class="btn pri'+(isCur("pm")?" pulse":"")+'" data-act="plan">Approve plan</button><button class="btn" data-act="noop">Change</button></div>')+'</div>';
+  return '<div class="two"><div><div class="cham card"><h3>Not just a list of what&rsquo;s due</h3><p class="what">A report says &ldquo;6 checks due&rdquo;. PM Autopilot joins them with the repair, checks the deadline and the van, and shows what it saves.</p>'+
+   loopBox(["A repair job lands on a street with checks due.","6 yearly checks due by 31 Oct; Van 12 in Bexley Thu.","One visit is level 2: one tap.","Plan card with the saving.","&ldquo;Bundle Station Rd checks with repairs.&rdquo;"],stage)+'</div></div>'+
+   '<div><div class="cham card"><h3>How it creates the job</h3>'+steps+'</div><div class="cham card"><h3>Plan of the night</h3>'+plan+'</div></div></div>'}
+function tParts(){var stage=!st.plan?-1:(st.parts?4:3);
+  var body=!st.plan?'<p class="empty">Waiting for an approved plan.</p>':
+   '<div class="twrap" style="margin-top:0"><table class="t"><thead><tr><th>Part</th><th>Needed</th><th>Van 12</th><th>Bexley depot</th></tr></thead><tbody><tr><td><b>RCD 40A Type B</b></td><td>1</td><td>'+(st.parts?"1 (reserved)":"1")+'</td><td>3</td></tr><tr><td><b>Socket cover</b></td><td>0&ndash;1 (spare)</td><td>4</td><td>20</td></tr></tbody></table></div>'+
+   '<p class="note" style="margin:10px 0 0">Van 12 load after this job</p><div class="cap"><i style="width:58%"></i><em style="left:58%;width:'+(st.parts?4:0)+'%"></em></div><p class="note" style="font-size:12px">58% full, the RCD adds under 1 kg.</p>'+
+   (st.parts?'<p class="okline">&#10003; Reserved 1&times; RCD 40A Type B on Van 12 for J-30412. Depot stock after this: 3.</p>':
+    '<div class="prop"><div class="ph2"><span class="agt">Parts Autopilot</span>'+lv(2)+'<span>One tap</span></div><b class="t">Reserve 1&times; RCD 40A Type B on Van 12</b><div class="btns"><button class="btn pri'+(isCur("parts")?" pulse":"")+'" data-act="parts">Reserve on Van 12</button><button class="btn" data-act="noop">Use depot instead</button></div></div>');
+  return '<div class="two"><div><div class="cham card"><h3>How Parts Autopilot works here</h3><p class="what">Works out the parts for each planned job, finds the nearest stock and checks the van has room.</p>'+
+   loopBox(["Thursday&rsquo;s visit needs an RCD.","March job used RCD 40A Type B; Van 12 has 1.","Reserving van stock is level 2.","Reserves it and updates stock.","&ldquo;Keep one RCD on Van 12.&rdquo;"],stage)+'</div></div><div><div class="cham card"><h3>Parts for J-30412</h3>'+body+'</div></div></div>'}
+var FVI=[
+ {k:"wide",label:"Wide shot: post and kerb",why:"Proves which post, and that the work area is safe.",ok:"Post label LP-14 found. Location within 5 m of the record.",read:[["Post ID","LP-14","97%"]]},
+ {k:"old",label:"Old RCD, before removal",why:"Evidence for the warranty claim.",ok:"Scorch mark found on the live terminal. Added to the warranty evidence.",defect:"Scorch mark on terminal"},
+ {k:"plate",label:"New RCD nameplate",why:"Creates the new part&rsquo;s record.",ok:"Nameplate read. 4 fields extracted.",read:[["Maker","Voltis (made up)","99%"],["Model","RCD 40A Type B","98%"],["Serial","RB40-77213","97%"],["Rating","40 A, 30 mA","96%"]]},
+ {k:"label",label:"Post ID label, close-up",why:"Confirms the record is for the right post.",firstBad:true,bad:"Too blurry to read. Retake requested on Dev&rsquo;s phone while he is still on site.",ok:"Label reads LP-14. Matches the job.",read:[["Post ID","LP-14","99%"]]},
+ {k:"socket",label:"Socket after repair",why:"Shows the job was finished properly.",ok:"Cover seated, cable gland tight, no visible damage."},
+ {k:"screen",label:"Charger screen",why:"Confirms the charger is back in service.",ok:"Screen reads &lsquo;Available&rsquo;. Charger back in service.",read:[["Status","Available","95%"]]}];
+function fvNew(){return {s:["todo","todo","todo","todo","todo","todo"],img:{},sel:0,retaken:{},compared:false}}
+function fvBad(){return st.fv&&st.fv.s.indexOf("bad")>=0}
+function fvAllOk(){return st.fv.s.every(function(x){return x==="ok"})}
+function fvEval(i,now){var it=FVI[i];st.fv.sel=i;
+  function fin(){if(it.firstBad&&!st.fv.retaken[i]){st.fv.s[i]="bad";addLog("Thu 11:4"+i,"Field Verification","Photo &lsquo;"+it.label+"&rsquo; too blurry. Asked Dev to retake.")}else{st.fv.s[i]="ok";addLog("Thu 11:4"+i,"Field Verification",it.label+": "+it.ok.replace(/<[^>]+>/g,""))}
+    if(fvAllOk()&&!st.fv.compared){st.fv.compared=true;st.retake=true;addLog("Thu 11:49","Field Verification","LP-14 record updated: new RCD serial RB40-77213, install date, 6 photos. Evidence passed to Warranty &amp; Billing.");complete("photos");toast("All 6 photos pass. LP-14&rsquo;s record is updated.")}}
+  if(now){fin();return}
+  st.fv.s[i]="run";render();setTimeout(function(){fin();render()},650)}
+function fvRetake(i,now){st.fv.retaken[i]=true;fvEval(i,now)}
+var CVSTEPS=[["Quality","In focus, lit, not blocked"],["Identify","What is in the photo"],["Read","Text and numbers (OCR)"],["Check","Against the job checklist and the record"],["Act","Save, ask for a retake, or flag a defect"]];
+function cvPanel(){var i=st.fv.sel,it=FVI[i],s=st.fv.s[i];
+  var marks=CVSTEPS.map(function(c,j){var cls="",note="";
+    if(s==="ok"){cls="done";if(j===2&&!it.read)note="No text needed";if(j===4)note=it.defect?"Defect flagged":"Saved to LP-14"}
+    else if(s==="bad"){cls=j===0?"warnx":"";if(j===0)note="Blurry";if(j===4){cls="done";note="Retake requested"}}
+    else if(s==="run"){cls=j<2?"done":(j===2?"on":"")}
+    return '<li class="'+cls+'"><b>'+(j+1)+'. '+c[0]+'</b><span>'+c[1]+(note?' &middot; <em>'+note+'</em>':'')+'</span></li>'}).join("");
+  var res="";
+  if(s==="todo")res='<p class="empty">No photo yet. Take or upload one on Dev&rsquo;s phone.</p>';
+  else if(s==="run")res='<p class="empty">Checking&hellip;</p>';
+  else if(s==="bad")res='<div class="prop warn"><div class="ph2"><span class="agt">Field Verification</span>'+lv(1)+'<span>Just does it</span></div><p style="margin:6px 0 8px">'+it.bad+'</p><div class="btns"><button class="btn pri'+(isCur("photos")?" pulse":"")+'" data-fvretake="'+i+'">Simulate retake</button></div></div>';
+  else{res='<p class="okline">&#10003; '+it.ok+'</p>';
+    if(it.read)res+='<table class="t" style="margin-top:8px"><thead><tr><th>Field read</th><th>Value</th><th>Confidence</th></tr></thead><tbody>'+it.read.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>'}).join("")+'</tbody></table><p class="note" style="font-size:11.5px;margin:6px 0 0">Below 90% confidence, a person confirms the value before it is saved.</p>';
+    if(it.defect)res+='<div class="prop" style="border-left-color:var(--crit)"><div class="ph2"><span class="agt">Defect found</span></div><p style="margin:6px 0 0">'+it.defect+'. Attached to claim evidence for Warranty &amp; Billing.</p></div>'}
+  return '<div class="cham card"><h3>Computer Vision on this photo <span class="sp agt">'+it.label+'</span></h3><ol class="cvs">'+marks+'</ol><div style="margin-top:10px">'+res+'</div></div>'}
+function box(x,y,w,h,t,c){return '<g><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="none" stroke="'+c+'" stroke-width="2.5"/><rect x="'+x+'" y="'+(y-16)+'" width="'+(t.length*6.2+10)+'" height="15" fill="'+c+'"/><text x="'+(x+5)+'" y="'+(y-5)+'" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#18181b">'+t+'</text></g>'}
+var OKC="#3fc0b3",BADC="#f59e0b",DEFC="#fb7185";
+function photoSvg(k,mode){var o=[],ov=[],blur=false;
+ o.push('<defs><linearGradient id="sky'+k+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fbcd0"/><stop offset="1" stop-color="#d9e2e6"/></linearGradient><radialGradient id="sc'+k+'"><stop offset="0" stop-color="#2b1d12"/><stop offset=".6" stop-color="#6b4a2e" stop-opacity=".8"/><stop offset="1" stop-color="#8a7a66" stop-opacity="0"/></radialGradient><filter id="bl'+k+'"><feGaussianBlur stdDeviation="3.2"/></filter></defs>');
+ if(k==="wide"){o.push('<rect width="300" height="220" fill="url(#skywide)"/><path d="M0 120 L30 100 L60 120 L90 100 L120 120 L150 100 L180 120 L210 100 L240 120 L270 100 L300 120 V175 H0Z" fill="#b9a99a"/>'+[10,70,130,190,250].map(function(x){return '<rect x="'+(x+8)+'" y="128" width="14" height="16" fill="#e8e1d6"/><rect x="'+(x+32)+'" y="128" width="14" height="16" fill="#e8e1d6"/>'}).join("")+'<rect y="175" width="300" height="20" fill="#a7a39d"/><rect y="195" width="300" height="25" fill="#55575b"/><rect x="146" y="40" width="8" height="140" fill="#4b5563"/><path d="M150 44 q0 -12 14 -12 h18" stroke="#4b5563" stroke-width="5" fill="none"/><rect x="180" y="28" width="18" height="8" fill="#374151"/><rect x="141" y="128" width="18" height="30" fill="#2f3a45"/><rect x="144" y="132" width="12" height="6" fill="#ef4444"/><rect x="143" y="112" width="14" height="10" fill="#f4f1ea"/><text x="150" y="120" font-size="6" text-anchor="middle" font-family="system-ui" font-weight="700" fill="#1f2937">LP-14</text><path d="M190 205 v-12 q0 -5 7 -6 l10 -10 q4 -4 9 -4 h28 q6 0 10 5 l8 9 q8 1 8 6 v12z" fill="#6b7f99"/><circle cx="206" cy="207" r="7" fill="#1f2937"/><circle cx="252" cy="207" r="7" fill="#1f2937"/>');
+  if(mode==="ok"){ov.push(box(136,110,30,52,"Post LP-14 97%",OKC))}}
+ if(k==="old"){o.push('<rect width="300" height="220" fill="#5b6470"/><rect x="40" y="30" width="220" height="160" fill="#c9ccd1"/><rect x="40" y="30" width="220" height="10" fill="#9aa0a8"/><rect x="70" y="60" width="70" height="110" fill="#f1efe9"/><rect x="95" y="80" width="20" height="30" fill="#2563eb"/><rect x="160" y="60" width="70" height="110" fill="#f1efe9"/><rect x="170" y="140" width="16" height="14" fill="#9ca3af"/><rect x="204" y="140" width="16" height="14" fill="#9ca3af"/><ellipse cx="180" cy="148" rx="26" ry="20" fill="url(#scold)"/><path d="M75 175 q40 10 80 -5" stroke="#b91c1c" stroke-width="4" fill="none"/><path d="M165 175 q30 15 60 0" stroke="#1d4ed8" stroke-width="4" fill="none"/>');
+  if(mode==="ok"){ov.push(box(150,126,62,46,"Scorch mark 91%",DEFC));ov.push(box(66,56,78,118,"RCD (old) 94%",OKC))}}
+ if(k==="plate"){o.push('<rect width="300" height="220" fill="#8b929b"/><rect x="40" y="25" width="220" height="170" fill="#f6f4ef"/><rect x="40" y="25" width="220" height="26" fill="#1f2937"/><text x="56" y="44" font-family="system-ui" font-weight="800" font-size="15" fill="#f6f4ef">VOLTIS</text><text x="56" y="80" font-family="system-ui" font-weight="700" font-size="14" fill="#1f2937">RCD 40A TYPE B</text><text x="56" y="110" font-family="ui-monospace,monospace" font-size="13" fill="#1f2937">S/N RB40-77213</text><text x="56" y="138" font-family="system-ui" font-size="12" fill="#374151">40 A &#183; 30 mA &#183; 230 V</text><rect x="200" y="140" width="44" height="44" fill="#1f2937"/><rect x="206" y="146" width="10" height="10" fill="#f6f4ef"/><rect x="226" y="146" width="12" height="8" fill="#f6f4ef"/><rect x="208" y="166" width="14" height="10" fill="#f6f4ef"/><text x="56" y="178" font-family="system-ui" font-size="9" fill="#6b7280">Made up for the prototype</text>');
+  if(mode==="ok"){ov.push(box(50,64,130,22,"Model 98%",OKC));ov.push(box(50,94,130,22,"Serial 97%",OKC));ov.push(box(50,124,130,20,"Rating 96%",OKC))}}
+ if(k==="label"){blur=(mode==="bad"||mode==="raw1");o.push('<rect width="300" height="220" fill="#4b5563"/><rect x="120" y="0" width="60" height="220" fill="#6b7280"/><rect x="95" y="60" width="110" height="80" fill="#f4f1ea"/><rect x="95" y="60" width="110" height="18" fill="#2c867d"/><text x="150" y="73" font-family="system-ui" font-weight="700" font-size="10" text-anchor="middle" fill="#f4f1ea">ubitricity charge point</text><text x="150" y="118" font-family="system-ui" font-weight="800" font-size="30" text-anchor="middle" fill="#1f2937">LP-14</text><text x="150" y="133" font-family="system-ui" font-size="8" text-anchor="middle" fill="#4b5563">Bexley &#183; Station Rd</text>');
+  if(mode==="ok"){ov.push(box(100,90,100,36,"Post ID LP-14 99%",OKC))} if(mode==="bad"){ov.push(box(95,60,110,80,"Too blurry",BADC))}}
+ if(k==="socket"){o.push('<rect width="300" height="220" fill="#3b4652"/><rect x="80" y="20" width="140" height="180" fill="#2f3a45"/><circle cx="150" cy="110" r="44" fill="#1f2937"/><circle cx="150" cy="110" r="36" fill="#111827"/>'+[[150,88],[130,100],[170,100],[132,122],[168,122],[150,132],[150,110]].map(function(p){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="6" fill="#4b5563"/>'}).join("")+'<path d="M100 60 h100" stroke="#6b7280" stroke-width="6"/><rect x="104" y="166" width="92" height="16" fill="#e5e7eb"/><text x="150" y="178" font-family="system-ui" font-size="9" font-weight="700" text-anchor="middle" fill="#1f2937">TYPE 2 &#183; 7 kW</text>');
+  if(mode==="ok"){ov.push(box(100,60,100,100,"Socket, cover seated 93%",OKC))}}
+ if(k==="screen"){o.push('<rect width="300" height="220" fill="#2f3a45"/><rect x="60" y="40" width="180" height="120" fill="#0b1220"/><text x="150" y="85" font-family="system-ui" font-size="11" text-anchor="middle" fill="#9ca3af">LP-14</text><text x="150" y="112" font-family="system-ui" font-weight="800" font-size="22" text-anchor="middle" fill="#34d399">Available</text><text x="150" y="134" font-family="system-ui" font-size="9" text-anchor="middle" fill="#9ca3af">Plug in to start charging</text><circle cx="150" cy="182" r="9" fill="#34d399"/>');
+  if(mode==="ok"){ov.push(box(84,92,132,28,"Status: Available 95%",OKC))}}
+ var body=o.join("");if(blur)body='<g filter="url(#bl'+k+')">'+body.replace(/<defs>[\s\S]*?<\/defs>/,"")+'</g>'+o[0];
+ return '<svg viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Dummy job photo: '+k+'">'+body+ov.join("")+'</svg>'}
+function viewfinder(it){return '<div class="vf"><span class="vfc tl"></span><span class="vfc tr"></span><span class="vfc bl"></span><span class="vfc br"></span><p>Point at:<br><b>'+it.label+'</b></p></div>'}
+var CVP=[
+ ["Quality","Sharpness (blur score)","0.6 or more on a 0&ndash;1 scale; below, ask for a retake","all"],
+ ["Quality","Exposure","Not too dark, not blown out","all"],
+ ["Quality","Glare","No reflection over text or labels","2,3,5"],
+ ["Quality","Obstruction","Subject at least 80% visible","all"],
+ ["Quality","Resolution","At least 1280 px on the long side","all"],
+ ["Context","Location (GPS)","Within 25 m of the site","0"],
+ ["Context","Time taken","Inside the job&rsquo;s visit window","all"],
+ ["Context","Duplicate check","Not a photo reused from another job","all"],
+ ["Identify","Object type","Matches the checklist item (post, RCD, nameplate, label, socket, screen)","all"],
+ ["Identify","Asset match","Post ID in the photo matches the job","0,3"],
+ ["Read (OCR)","Fields read","Maker, model, serial, rating &middot; post ID &middot; screen status","0,2,3,5"],
+ ["Read (OCR)","Read confidence","90% or more is saved; below, a person confirms","0,2,3,5"],
+ ["Read (OCR)","Format check","Serial matches the maker&rsquo;s pattern","2"],
+ ["Check","Against the record","Serial differs from the record &rarr; update proposed","2"],
+ ["Check","Approved part","Model is on the approved parts list for this charger","2"],
+ ["Check","Checklist complete","All required photos for the job template passed","all"],
+ ["Defects","Defect types","Scorch or burn, crack, corrosion, water ingress, missing cover, loose cable","1,4"],
+ ["Defects","Defect confidence","85% or more is flagged; below, a person reviews","1,4"]];
+function cvUsed(r,i){return r[3]==="all"||r[3].split(",").indexOf(String(i))>=0}
+function cvResult(r,i){var s=st.fv.s[i],it=FVI[i];if(s==="todo"||s==="run")return '<span class="pr">&ndash;</span>';
+  var bad=s==="bad";var n=r[1];
+  if(n.indexOf("Sharpness")===0)return bad?'<span class="pr x">0.31 &#10007; retake</span>':'<span class="pr ok">0.8'+(i+2)+' &#10003;</span>';
+  if(bad)return '<span class="pr">not checked</span>';
+  if(n==="Location (GPS)")return '<span class="pr ok">12 m &#10003;</span>';
+  if(n==="Time taken")return '<span class="pr ok">11:4'+(i+2)+' &#10003;</span>';
+  if(n==="Read confidence"&&it.read)return '<span class="pr ok">'+it.read.map(function(x){return x[2]}).join(", ")+' &#10003;</span>';
+  if(n==="Fields read"&&it.read)return '<span class="pr ok">'+it.read.length+' read &#10003;</span>';
+  if(n==="Against the record")return '<span class="pr ok">RB40-51108 &rarr; RB40-77213</span>';
+  if(n.indexOf("Defect")===0)return it.defect?'<span class="pr d">Scorch mark 91% &middot; flagged</span>':'<span class="pr ok">None found &#10003;</span>';
+  if(n==="Checklist complete")return st.fv.compared?'<span class="pr ok">6 of 6 &#10003;</span>':'<span class="pr">'+st.fv.s.filter(function(x){return x==="ok"}).length+' of 6</span>';
+  return '<span class="pr ok">&#10003;</span>'}
+function cvParams(){var i=st.fv.sel,rows=CVP.filter(function(r){return cvUsed(r,i)}).map(function(r){return '<tr><td><span class="pg">'+r[0]+'</span>'+r[1]+'</td><td>'+r[2]+'</td><td>'+cvResult(r,i)+'</td></tr>'}).join("");
+  return '<div class="cham card"><h3>Parameters for this photo <span class="sp agt">'+CVP.filter(function(r){return cvUsed(r,i)}).length+' of '+CVP.length+'</span></h3><div class="twrap" style="margin-top:0"><table class="t cvpt"><thead><tr><th>Parameter</th><th>Rule</th><th>Result</th></tr></thead><tbody>'+rows+'</tbody></table></div><p class="note" style="font-size:11.5px;margin-top:6px">Starting thresholds. They are tuned on the customer&rsquo;s past job photos during the pilot.</p></div>'}
+
+function tFV(){if(!st.parts)return '<div class="cham card"><p class="empty">Waiting for the visit to be planned and loaded.</p></div>';
+  var nOk=st.fv.s.filter(function(x){return x==="ok"}).length;
+  var stage=nOk===0&&st.fv.s.every(function(x){return x==="todo"})?0:(st.fv.compared?4:(fvBad()?3:2));
+  var i=st.fv.sel,it=FVI[i],s=st.fv.s[i],img=st.fv.img[i];
+  var view;
+  if(s==="todo")view=viewfinder(it);
+  else{var mode=s==="ok"?"ok":(s==="bad"?"bad":(it.firstBad&&!st.fv.retaken[i]?"raw1":"raw"));
+    view=img?'<img src="'+img+'" alt="Uploaded photo">'+(s==="ok"?'<span class="imgok">&#10003; Checked</span>':''):photoSvg(it.k,mode);
+    if(s==="run")view+='<span class="scan"></span><span class="scanl">Computer Vision checking&hellip;</span>'}
+  var badge={todo:"",run:'<span class="vb run">Checking</span>',bad:'<span class="vb bad">Retake needed</span>',ok:'<span class="vb ok">Passed</span>'}[s];
+  var btn=s==="todo"?'<button class="dbtn pri" data-fvtake="'+i+'">&#9673; Take photo</button><button class="dbtn" data-fvup="'+i+'">Upload</button>':(s==="bad"?'<button class="dbtn warn'+(isCur("photos")?" pulse":"")+'" data-fvretake="'+i+'">&#9673; Retake</button>':(s==="ok"&&i<5?'<button class="dbtn" data-fvsel="'+(st.fv.s.indexOf("todo")>=0?st.fv.s.indexOf("todo"):i)+'">Next photo &rarr;</button>':''));
+  var thumbs=FVI.map(function(t,j){var sj=st.fv.s[j],im=st.fv.img[j];var inner=sj==="todo"?'<span class="tn">'+(j+1)+'</span>':(im?'<img src="'+im+'" alt="">':photoSvg(t.k,sj==="bad"?"raw1":"raw"));
+    return '<button class="dth '+sj+(j===i?" sel":"")+'" data-fvsel="'+j+'" title="'+t.label+'">'+inner+'<i></i></button>'}).join("");
+  var rec=st.fv.compared?'<div class="cham card"><h3>Record updated <span class="sp">'+lv(1)+'</span></h3><table class="t"><thead><tr><th>Field on LP-14</th><th>Was</th><th>Now</th></tr></thead><tbody><tr><td>RCD serial</td><td>RB40-51108</td><td>RB40-77213</td></tr><tr><td>RCD install date</td><td>Mar 2026</td><td>Thu (today)</td></tr><tr><td>Photos on record</td><td>2</td><td>8</td></tr><tr><td>Post ID check</td><td>Not checked</td><td>LP-14 &#10003;</td></tr></tbody></table><p class="note" style="font-size:12px;margin-top:8px">Every change is logged and can be undone. Added to the quarterly verification report. Scorch-mark photo passed to Warranty &amp; Billing.</p></div>':'';
+  var device='<div class="device"><div class="dscreen"><div class="dstatus"><span>11:4'+Math.min(9,2+nOk)+'</span><span class="isl"></span><span>4G &#183; 76%</span></div>'+
+   '<div class="dhead"><span class="dapp">Sitetracker</span><b>J-30412 &middot; LP-14</b><small>Photo '+(i+1)+' of 6 &middot; '+nOk+' passed</small></div>'+
+   '<div class="dprog">'+FVI.map(function(t,j){return '<i class="'+st.fv.s[j]+'"></i>'}).join("")+'</div>'+
+   '<div class="dview">'+view+badge+'</div>'+
+   '<div class="dcap"><b>'+(i+1)+'. '+it.label+'</b><span>'+it.why+'</span></div>'+
+   '<div class="dbtns">'+btn+'</div>'+
+   '<div class="dthumbs">'+thumbs+'</div><div class="dhome"></div></div></div>';
+  return '<div class="two"><div><div class="cham card"><h3>How Field Verification works here</h3><p class="what">Before the visit it builds the photo checklist from the job template. On site, Computer Vision checks each photo as it lands, reads nameplates and labels, spots defects, and compares everything with the record. Problems are caught while the tech is still there.</p>'+
+   loopBox(["Dev takes photos for J-30412 in the mobile app.","The repair template needs 6 photos; the record has the old RCD serial.","Saving a serial or asking for a retake is level 1.","Saves what passes; asks for retakes; flags defects.","&ldquo;LP-14: new RCD RB40-77213. Label hard to photograph: shoot in daylight.&rdquo;"],stage)+'</div>'+cvPanel()+'</div>'+
+   '<div><div class="cham card"><h3>Dev&rsquo;s phone <span class="sp note" style="font-size:12px;font-weight:400">Sitetracker mobile app</span></h3>'+device+
+   (st.fv.compared?'':'<div style="margin-top:12px;display:flex;justify-content:center"><button class="btn'+(isCur("photos")?" brand pulse":"")+'" data-act="fvall">Take all remaining photos</button></div>')+
+   '<p class="note" style="font-size:11.5px;margin-top:8px;text-align:center">Dummy photos. &ldquo;Upload&rdquo; accepts a real photo from your device; the checks are simulated.</p></div>'+rec+'</div></div>'+cvParams()}
+
+function tWB(){var stage=!st.retake?-1:(!st.closed?0:(st.claim?4:3));
+  var body;
+  if(!st.retake)body='<p class="empty">Waiting for the job to finish on site.</p>';
+  else if(!st.closed)body='<p class="what">Dev has finished. Closing the job triggers the money check.</p><button class="btn pri'+(isCur("claim")?" pulse":"")+'" data-act="close">Close job J-30412</button>';
+  else body='<div class="prop'+(st.claim?" done":" warn")+'"><div class="ph2"><span class="agt">Warranty &amp; Billing</span>'+lv(3)+'<span>Drafts, you check</span></div><b class="t">Warranty claim WC-0412 &middot; charger unit maker</b>'+
+   '<dl class="fields"><dt>Asset</dt><dd>LP-14 charger unit, installed Jun 2022</dd><dt>Warranty</dt><dd>Maker&rsquo;s warranty until Jun 2027: RCD covered</dd><dt>Claim</dt><dd>RCD &pound;142 + 1.5 h labour (made up)</dd><dt>Evidence</dt><dd><span class="chips"><span class="chip">Fault log (9 trips)</span><span class="chip">Before / after photos</span><span class="chip">Old + new serials</span><span class="chip">March job J-20311</span></span></dd>'+
+   '<dt>Council billing</dt><dd>No column damage in photos: nothing to bill the council.</dd></dl>'+
+   (st.claim?'<p class="okline" style="margin-top:8px">&#10003; Sent by Sam to the maker. Status: submitted.</p>':'<div class="btns" style="margin-top:10px"><button class="btn pri'+(isCur("claim")?" pulse":"")+'" data-act="claim">Review and send</button><button class="btn" data-act="noop">Not claimable</button></div>')+'</div>';
+  return '<div class="two"><div><div class="cham card"><h3>How Warranty &amp; Billing works here</h3><p class="what">When a job closes it checks the warranty and the contract. It drafts the claim or the invoice with the evidence. A person always sends it.</p>'+
+   loopBox(["J-30412 closes.","LP-14 under warranty to 2027; RCD covered.","A claim is level 3: drafts, you check.","Claim WC-0412 drafted with evidence.","&ldquo;Maker paid for 2 RCDs on LP-14.&rdquo;"],stage)+'</div></div><div><div class="cham card"><h3>The money check</h3>'+body+'</div></div></div>'}
+function tLog(){var lg='<ul class="log">'+st.log.map(function(l){return '<li><time>'+l[0]+'</time><span class="who">'+l[1]+'</span><span>'+l[2]+'</span></li>'}).join("")+'</ul>';
+  var mem=st.mem.map(function(m){return '<div class="mem">&ldquo;'+m+'&rdquo;</div>'}).join("");
+  var btn=st.night?'<span class="okline">&#10003; Nightly done: 14 clean sessions on LP-14. Street is green.</span>':'<button class="btn pri'+(isCur("night")?" pulse":"")+'" data-act="night"'+(st.claim?"":" disabled")+'>Run 22:00 nightly</button>'+(st.claim?"":'<p class="note" style="font-size:12px;margin-top:6px">Available after the job closes.</p>');
+  return '<div class="two"><div><div class="cham card"><h3>Memory</h3><p class="what">What the minion carries into tomorrow. Short notes, tied to this street.</p>'+mem+'<div style="margin-top:12px">'+btn+'</div></div></div><div><div class="cham card"><h3>Everything it did <span class="agt sp">logged &middot; can be undone</span></h3>'+lg+'</div></div></div>'}
+
+/* ---------- brief ---------- */
+/* ---------- Board: the same day as Notchi notches ---------- */
+var WHO={om:["Operations manager","agent","OM"],mn:["Station Rd minion","agent","SR"],sp:["Specialist","agent","SP"],sam:["Sam","person","S"],dev:["Dev","person","D"]};
+var COLS=[["todo","To do"],["agent","Agent working"],["decide","Needs decision"],["verify","Verifying"],["done","Done"]];
+function notches(){var n=[],hb=st.hb==="done",fvDone=st.fv&&st.fv.compared,anyPhoto=st.fv&&st.fv.s.some(function(x){return x!=="todo"});
+  function add(id,title,anchor,who,col,prio,kind,goal,receipt,parent){n.push({id:id,t:title,a:anchor,w:who,c:col,p:prio,k:kind,g:goal,r:receipt,par:parent})}
+  if(!hb){add("N-101","Daily heartbeat: Station Rd","Station Rd","mn","todo","","Heartbeat","Check 6 posts, open jobs and due dates.","");}
+  else add("N-101","Daily heartbeat: Station Rd","Station Rd","mn","done","","Heartbeat","Check 6 posts, open jobs and due dates.","Read 6 posts, 3 jobs, 1 PM plan. Found 1 finding (LP-14). 0.4 s, 0 AI tokens. Trace tr-5521.");
+  if(hb){
+   add("N-102","LP-14 trips on every session","LP-14","mn",st.repair?"done":"agent","P2","Finding","Get LP-14 charging again on the earliest visit.",st.repair?"Drafted repair J-30412, linked March job J-20311. Approved by Sam. Trace tr-5524.":"","");
+   add("N-103","Second RCD failure in 7 months: advise?","LP-14","sp",st.repair?"done":"agent","P3","Ask specialist","Before escalating, check the fleet for this fault.",st.repair?"Same RCD batch failed on 11 of 99 posts this year. Fit batch B; if LP-14 fails again, replace the charger unit. Trace tr-5525.":"","N-102");
+   add("N-104","Approve repair J-30412","LP-14","sam",st.repair?"done":"decide","P2","Decision","One tap: approve or change the drafted repair.",st.repair?"Approved by Sam, 07:18.":"","N-102")}
+  if(st.repair){
+   add("N-105","Plan Thursday visit: repair + 6 yearly checks","Station Rd","om",st.plan?"done":"decide","P2","Plan","One visit, inside the 31 Oct deadline, van space checked.",st.plan?"Plan approved by Sam. Handed to Dispatch: Dev, Thu 09:00. Saves 1 trip. Trace tr-5530.":"","N-102")}
+  if(st.plan){
+   add("N-106","Reserve RCD 40A Type B on Van 12","Van 12","mn",st.parts?"done":"decide","P2","Parts","Part on the van before the visit.",st.parts?"Reserved 1 on Van 12. Depot stock 3. Trace tr-5533.":"","N-105")}
+  if(st.parts){
+   add("N-107","Take 6 job photos","LP-14","dev",fvDone?"done":(anyPhoto?"agent":"todo"),"P6","Field task","All 6 checklist photos pass Computer Vision.",fvDone?"6 of 6 passed.":"","N-105");
+   if(st.fv.retaken[3]||fvBad())add("N-108","Retake post ID label","LP-14","dev",fvBad()?"todo":"done","P6","Field task","Label photo readable.",fvBad()?"":"Retake passed: LP-14.","N-107");
+   if(fvDone)add("N-109","Update LP-14 record from photos","LP-14","mn",st.night?"done":"verify","P6","Record","Serial, install date and photos on the record.","New RCD serial RB40-77213 saved; 6 photos attached. Trace tr-5541."+(st.night?" Verified by the 22:00 heartbeat.":" Waiting for the next heartbeat to verify."),"N-107")}
+  if(st.closed){
+   add("N-110","Draft warranty claim WC-0412","LP-14","mn","done","P6","Money","Claim the RCD from the maker with evidence.","Drafted with fault log, photos, both serials, March job. Trace tr-5546.","N-102");
+   add("N-111","Send claim WC-0412","LP-14","sam",st.claim?"done":"decide","P6","Decision","A person sends money claims.",st.claim?"Sent by Sam, 12:30.":"","N-110");
+   add("N-112","Confirm LP-14 repair held","LP-14","mn",st.night?"done":"verify","P2","Verify","14 clean sessions after the repair.",st.night?"14 clean sessions. Health 78. Verified 22:00.":"Checked at the next heartbeat (22:00).","N-102")}
+  add("N-120","Weekly review of agent advice","Bexley fleet","sp","todo","","Review","Check minions gave good advice; update fleet lessons.","","");
+  add("N-121","Yearly check due: Mill Hill (overdue 4 days)","Mill Hill","om","todo","P3","Due work","Bundle with any repair on Mill Hill.","","");
+  return n}
+function whoChip(k){var w=WHO[k];return '<span class="who '+w[1]+'"><i>'+w[2]+'</i>'+w[0]+'</span>'}
+function kcols(ns){var sel=st.bsel;return COLS.map(function(c){var items=ns.filter(function(x){return x.c===c[0]});
+    return '<div class="kcol"><div class="kh"><b>'+c[1]+'</b><span>'+items.length+'</span></div>'+(items.length?items.map(function(x){var open=sel===x.id;
+      return '<div class="kc'+(open?" open":"")+(x.c==="decide"?" dec":"")+'" data-nsel="'+x.id+'"><div class="kt">'+(x.p?'<span class="pb '+(x.p<"P4"?"c":(x.p<"P6"?"w":"b"))+'">'+x.p+'</span>':'')+'<span class="kk">'+x.k+'</span><span class="kid">'+x.id+'</span></div><b>'+x.t+'</b><div class="km"><span class="anc">&#9875; '+x.a+'</span>'+whoChip(x.w)+'</div>'+
+       (open?'<div class="kd"><p><span>Goal</span>'+x.g+'</p>'+(x.par?'<p><span>Parent</span>'+x.par+'</p>':'')+(x.r?'<p><span>Receipt</span>'+x.r+'</p>':'<p><span>Receipt</span>Not yet. An agent can&rsquo;t mark it Done without one.</p>')+'</div>':'')+'</div>'}).join(""):'<p class="kempty">Nothing here</p>')+'</div>'}).join("")}
+function renderBoard(){var ns=notches();
+  var filt=st.bfilt||"all";ns=ns.filter(function(x){return filt==="all"||WHO[x.w][1]===filt});
+  var done=notches().filter(function(x){return x.c==="done"&&WHO[x.w][1]==="agent"});
+  var cols=kcols(ns);
+  var f=[["all","Everyone"],["agent","Agents"],["person","People"]].map(function(x){return '<button class="'+(filt===x[0]?"on":"")+'" data-bfilt="'+x[0]+'">'+x[1]+'</button>'}).join("");
+  var mins={Heartbeat:2,Finding:15,"Ask specialist":20,Plan:25,Parts:10,Record:15,Money:30,Verify:10};var m=done.reduce(function(a,x){return a+(mins[x.k]||10)},0);
+  return '<div class="crumb">Notchi &rsaquo; Workspace: Field Central &middot; Bexley &rsaquo; Board</div>'+
+  '<div class="cham ph"><span class="obj">NB</span><div><h1>Bexley fleet board</h1><small>The same day as Notchi notches: agents and people on one board. Every notch is anchored to a record and closes with a receipt.</small></div><div class="acts"><div class="seg">'+f+'</div></div></div>'+
+  '<div class="kpis"><div class="cham kpi"><b>'+done.length+'</b><small>notches done by agents today</small></div><div class="cham kpi"><b>'+(m/60).toFixed(1)+' h</b><small>estimated work done by agents</small></div><div class="cham kpi'+(notches().filter(function(x){return x.c==="decide"}).length?" r":"")+'"><b>'+notches().filter(function(x){return x.c==="decide"}).length+'</b><small>waiting on a person</small></div><div class="cham kpi"><b>3</b><small>agents: operations manager, street minion, specialist</small></div></div>'+
+  '<div class="kwrap"><div class="kboard">'+cols+'</div></div>'+
+  '<p class="note" style="font-size:12px;margin-top:8px">Click a card for its goal and receipt. Run the demo guide and watch cards move. &ldquo;Verifying&rdquo; means the agent posted a receipt and the next heartbeat checks it before Done.</p>'+
+  '<details class="bmore"><summary>Who works on this board, and what&rsquo;s already built in Notchi</summary><div class="bstack"><div class="cham card"><h3>Who works on this board</h3><ul class="roles">'+
+   '<li>'+whoChip("om")+'<span>One per region (optional hierarchy). Plans visits, talks to the minions, escalates to people.</span></li>'+
+   '<li>'+whoChip("mn")+'<span>One per street (site entity). Runs the heartbeat, finds problems, does the routine work.</span></li>'+
+   '<li>'+whoChip("sp")+'<span>One per company. A performance engineer that learns from every minion; minions ask it before escalating.</span></li>'+
+   '<li>'+whoChip("sam")+whoChip("dev")+'<span>People: decisions, money, safety, and work on site.</span></li></ul></div>'+
+  '<div class="cham card"><h3>Under the hood: checked in the Notchi code <span class="sp note" style="font-size:11px;font-weight:400">main, 25 Oct</span></h3><table class="t ut"><thead><tr><th>Need</th><th>Status</th></tr></thead><tbody>'+
+   '<tr><td>One agent per record, daily sweep, worst-first status roll-up</td><td><span class="ex">Built</span> Notchi, behind a flag (on for Tower Program)</td></tr>'+'<tr><td>Agents as assignees; receipts; Done verified by the next heartbeat</td><td><span class="ex">Built</span> Notchi</td></tr>'+'<tr><td>Work log with estimated hours</td><td><span class="ex">Built</span> Notchi</td></tr>'+'<tr><td>Agents delegating to other agents and people; escalation</td><td><span class="ex">Built</span> Notchi (pursue mode)</td></tr>'+'<tr><td>Memory per notch</td><td><span class="ex">Built</span> Notchi</td></tr>'+'<tr><td>Custom agent page inside a workspace</td><td><span class="gp">One-off</span> only the siting workbench</td></tr>'+'<tr><td>Specialist and operations manager roles</td><td><span class="nw">New</span> could ride on delegation</td></tr>'+'<tr><td>Chargers and other field assets as anchored records</td><td><span class="gp">Gap</span> sweep covers Projects today</td></tr>'+'<tr><td>Scout side: task ingress, receipts</td><td><span class="gp">Gap</span> SCOUT-21808</td></tr>'+'<tr><td>Monitoring data (e.g. OCPP charger alarms)</td><td><span class="nw">New</span> Brock building OCPP</td></tr></tbody></table></div></div></details>'}
+
+function renderBrief(){var ready=st.night;
+  return '<div class="crumb">Field Assets &rsaquo; Monday brief</div><div class="cham ph"><span class="obj">MB</span><div><h1>Monday brief &middot; Sam</h1><small>Written by the operations manager from every street minion &middot; Mon 06:30</small></div></div>'+
+  (ready?'<div class="two"><div class="cham card"><h3>Needs you this week</h3><ol style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.8"><li>Church Ln LP-22 offline 3 days: escalate to the maker?</li><li>Mill Hill yearly checks overdue by 4 days: approve the plan.</li><li>Grove Pl: 2 posts need a socket; parts arrive Wednesday.</li></ol></div>'+
+   '<div class="cham card"><h3>Done for you last week</h3><div class="kpis" style="grid-template-columns:1fr 1fr;margin:0"><div class="cham kpi"><b>640</b><small>streets checked daily</small></div><div class="cham kpi"><b>9</b><small>repairs put on yearly-check trips</small></div><div class="cham kpi"><b>14</b><small>parts reserved</small></div><div class="cham kpi"><b>3</b><small>warranty claims drafted</small></div></div><p class="note" style="margin-top:8px">Including Station Rd: LP-14 fixed on one trip, claim WC-0412 submitted.</p></div></div>':
+   '<div class="cham card"><p class="empty">Finish the day first: the brief is written after the nightly run.</p></div>')}
+
+/* ---------- copilot ---------- */
+var Q=[["need","Which streets need me today?"],["why","Why is Station Rd red?"],["part","Do we have the part for Thursday?"],["warr","Is LP-14 under warranty?"],["week","What did the minions do last week?"],["spec","Did it check with the Specialist?"]];
+function answer(k){var red=st.hb!=="idle";
+  if(k==="need")return red?(st.night?"<b>Nothing is red.</b> 2 streets need attention: Church Ln (LP-22 offline) and Mill Hill (checks overdue).<span class=cite>Answered from minion status: 1 step, 0 AI tokens</span>":"<b>1 street is red:</b> Station Rd, Bexley (LP-14 tripping, repair drafted). 3 need attention: Church Ln, Mill Hill, Elm Gr.<span class=cite>Answered from minion status: 1 step, 0 AI tokens</span>"):"The minions haven&rsquo;t run yet today. Run the 06:00 heartbeat on Home.<span class=cite>1 step, 0 AI tokens</span>";
+  if(k==="why")return red&&!st.night?"Its <b>Health score</b> slice is red: LP-14 tripped 9 times overnight with a ground fault, same as March. Every other job is fine.<span class=cite>Read from the Station Rd minion: 1 step, 0 AI tokens</span>":"Station Rd is not red right now.<span class=cite>1 step, 0 AI tokens</span>";
+  if(k==="part")return st.parts?"Yes. <b>1&times; RCD 40A Type B</b> is reserved on Van 12 for J-30412.<span class=cite>Parts Autopilot: 1 step</span>":(st.plan?"Van 12 has 1 RCD 40A Type B. It isn&rsquo;t reserved yet: approve it on Parts Autopilot.<span class=cite>Parts Autopilot: 1 step</span>":"There&rsquo;s no visit planned yet, so no parts list.<span class=cite>1 step</span>");
+  if(k==="warr")return "Yes. LP-14&rsquo;s charger unit is under the maker&rsquo;s warranty until <b>June 2027</b>, and the RCD is covered."+(st.claim?" Claim WC-0412 is submitted.":"")+"<span class=cite>Warranty &amp; Billing: 1 step</span>";
+  if(k==="week")return "Last week the minions checked 640 streets every day, put 9 repairs on yearly-check trips, reserved 14 parts and drafted 3 warranty claims.<span class=cite>Summary written by the operations manager: uses AI</span>";
+  if(k==="spec")return red?"Yes. Before drafting the repair, the Station Rd minion asked the <b>Specialist</b>. Answer: the same RCD batch failed on 11 of 99 posts this year; fit batch B, and replace the charger unit if LP-14 fails again. Nobody had to be woken up.<span class=cite>Notch N-103: 1 step</span>":"The minions haven&rsquo;t run yet today, so nothing has gone to the Specialist.<span class=cite>1 step</span>";
+  return "In this prototype I can answer: which streets need you, why a street is red, parts for Thursday, warranty, and last week."}
+function ask(k,text){st.chat.push(["u",text]);st.chat.push(["a",answer(k)]);if(k==="need"&&st.hb==="done")complete("ask");render();var c=$("chat");c.scrollTop=c.scrollHeight}
+function renderChat(){$("chat").innerHTML=st.chat.map(function(m){return '<div class="m '+m[0]+'">'+m[1]+'</div>'}).join("");
+  $("sugg").innerHTML=Q.map(function(q){return '<button data-ask="'+q[0]+'" class="'+(q[0]==="need"&&isCur("ask")?"pulse":"")+'">'+q[1]+'</button>'}).join("")}
+
+/* ---------- Workspace mock: Field Central, Bexley ---------- */
+function renderWS(){var ns=notches(),cnt=COLS.map(function(c){return [c[1],ns.filter(function(x){return x.c===c[0]}).length]});
+  var dec=ns.filter(function(x){return x.c==="decide"||x.c==="agent"}).slice(0,3);
+  var s=st.hb==="idle"?"gggggggggggg".split(""):stState(),rr=roll(s);
+  var nav='<nav class="wsnav" aria-label="Workspace"><h4>Agents</h4>'+
+   '<button data-nav="street"><i class="'+rr+'"></i>Station Rd minion<em>street</em></button>'+
+   '<button data-wsx="1"><i class="w"></i>Church Ln minion<em>street</em></button>'+
+   '<button data-wsx="1"><i class="g"></i>10 more minions</button>'+
+   '<button data-nav="brief"><i class="g"></i>Operations manager<em>region</em></button>'+
+   '<button data-wsx="1"><i class="w"></i>Specialist<em>company</em></button>'+
+   '<h4>Boards</h4><button data-nav="board">Bexley fleet board<em>'+ns.length+'</em></button>'+
+   '<h4>Scout tables</h4><button data-wsx="1">Chargers<em>99</em></button><button data-wsx="1">Charger alarms (OCPP)<em>live</em></button><button data-wsx="1">Work orders</button>'+
+   '<h4>Docs</h4><button data-wsx="1">Station Rd runbook</button><button data-wsx="1">Specialist lessons</button><button data-wsx="1">Bexley council contract</button></nav>';
+  var agent='<div class="cham card"><h3>Agent page: Station Rd minion <span class="agt">HTML page</span></h3><div style="display:flex;gap:12px;align-items:center">'+ring(s,52)+'<div><b>Station Rd, Bexley</b><br><small class="note">6 posts &middot; '+(st.hb==="idle"?"heartbeat at 06:00":"last heartbeat today 06:00")+'</small></div><span class="sp">'+stl(rr)+'</span></div>'+
+   '<ul class="mlist" style="margin-top:10px">'+(pending().length?pending().slice(0,3).map(function(x){return '<li><span class="pb '+(x[4]<'P4'?'c':'b')+'">'+x[4]+'</span><span>'+x[2]+'</span><span>'+x[0]+'</span></li>'}).join(""):'<li><span>Nothing waiting for you.</span></li>')+'</ul>'+
+   '<div class="btns"><button class="btn" data-nav="street">Open agent page</button></div></div>';
+  var board='<div class="cham card"><h3>Board: Bexley fleet <span class="agt">Notchi board</span></h3><div class="minik">'+cnt.map(function(c){return '<div><b>'+c[1]+'</b><small>'+c[0]+'</small></div>'}).join("")+'</div>'+
+   '<ul class="mlist">'+dec.map(function(x){return '<li>'+whoChip(x.w)+'<span>'+x.t+'</span><span>'+x.id+'</span></li>'}).join("")+'</ul><div class="btns"><button class="btn" data-nav="board">Open board</button></div></div>';
+  var al=[["LP-14","Station Rd","Ground fault (RCD trip)",st.hb==="idle"?"&ndash;":(st.night?"0":"9"),st.night?"g":(st.hb==="idle"?"g":"r")],["LP-22","Church Ln","Offline (no heartbeat)","1","w"],["GP-03","Grove Pl","Connector lock error","2","w"],["MH-07","Mill Hill","None","0","g"]];
+  var table='<div class="cham card"><h3>Scout table: Charger alarms <span class="agt">OCPP feed</span></h3><div class="twrap" style="margin-top:0"><table class="t"><thead><tr><th>Charger</th><th>Street</th><th>Last alarm</th><th>Overnight</th></tr></thead><tbody>'+al.map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+stl(r[4]).replace(LBL[r[4]],r[3])+'</td></tr>'}).join("")+'</tbody></table></div><p class="note" style="font-size:11.5px;margin:8px 0 0">Minions read this table on every heartbeat. Read-only: no remote resets.</p></div>';
+  var docs='<div class="cham card"><h3>Docs <span class="agt">shared with agents</span></h3><ul class="mlist">'+
+   '<li><span class="kk">Runbook</span><span>Station Rd: how this street is looked after</span><span>minion</span></li>'+
+   '<li><span class="kk">Lessons</span><span>RCD batch A: 11 of 99 failed. Fit batch B.</span><span>Specialist</span></li>'+
+   '<li><span class="kk">Contract</span><span>Bexley council: 72 h fix, yearly checks by 31 Oct</span><span>person</span></li>'+
+   '<li><span class="kk">Brief</span><span>Monday brief for Sam</span><span>ops manager</span></li></ul><p class="note" style="font-size:11.5px;margin:8px 0 0">Agents read and write these the same way people do. Every edit is logged.</p></div>';
+  return '<div class="crumb">Notchi &rsaquo; Workspace: Field Central &middot; Bexley</div>'+
+  '<div class="cham ph"><span class="obj">WS</span><div><h1>Field Central &middot; Bexley</h1><small>One Notchi workspace: the agent&rsquo;s own page, its board, the Scout tables it reads and the docs it keeps, side by side</small></div></div>'+
+  '<div class="ws">'+nav+'<div><div class="wsg">'+agent+board+table+docs+'</div>'+
+  '<div class="wsgap"><b>What this needs in Notchi:</b> a way to give an agent its own page inside a workspace, next to its board, tables and docs. Today only the siting workbench has a custom page, built one-off. A shared &ldquo;agent with a toolkit and a page&rdquo; building block would let every agent have one.</div></div></div>'}
+
+/* ---------- actions ---------- */
+var A={
+ hb:function(){if(st.hb!=="idle")return;st.hb="run";st.hbi=-1;render();var t=setInterval(function(){st.hbi++;if(st.hbi>=STREETS.length){clearInterval(t);st.hb="done";addLog("Wed 06:00","Asset Health","LP-14: 9 trips since 00:00, ground fault. Health 31.");addLog("Wed 06:01","Specialist","Asked by the Station Rd minion about LP-14. Same RCD batch failed on 11 of 99 posts; advised fitting batch B.");addLog("Wed 06:01","Asset Health","Drafted repair J-30412 (RCD batch B).");complete("hb");toast("Heartbeat done. Station Rd is red.")}render()},140)},
+ repair:function(){st.repair=true;addLog("Wed 07:18","Sam (approved)","Repair job J-30412 for LP-14.");complete("health");toast("Repair approved. PM Autopilot is planning the visit.")},
+ plan:function(){st.plan=true;addLog("Wed 07:19","PM Autopilot","Bundled J-30412 with 6 yearly checks. Handed to Dispatch: Dev, Thu 09:00.");complete("pm");toast("Plan approved: one trip instead of two.")},
+ parts:function(){st.parts=true;addLog("Wed 07:20","Parts Autopilot","Reserved 1 RCD 40A Type B on Van 12.");complete("parts");toast("RCD reserved on Van 12.")},
+ fvall:function(){st.fv.s.forEach(function(x,i){if(x==="todo")fvEval(i,true)});render()},
+ close:function(){st.closed=true;addLog("Thu 12:05","Dev","Closed J-30412.");addLog("Thu 12:06","Warranty &amp; Billing","Drafted claim WC-0412 with evidence.");toast("Job closed. Claim drafted.")},
+ claim:function(){st.claim=true;addLog("Thu 12:30","Sam (sent)","Warranty claim WC-0412 submitted to the maker.");complete("claim");toast("Claim sent by Sam.")},
+ night:function(){st.night=true;addLog("Thu 22:00","Asset Health","14 clean sessions on LP-14. Health 78. Street green.");st.mem.push("LP-14: RCD failed twice in 7 months. If it fails again, recommend replacing the charger unit.");st.mem.push("Bundle Station Rd yearly checks with any repair in October.");st.mem.push("From the Specialist: fit RCD batch B on this street.");complete("night");toast("Nightly done. The minion remembers.")},
+ noop:function(){toast("In the real product this opens an edit form.")}
+};
+function go(view){if(view.indexOf("street:")===0){st.view="street";st.tab=view.split(":")[1]}else st.view=view}
+function auto(){var c=cur();if(st.done[c.id])return;
+  var seq={hb:function(){go("home");A.hb()},ask:function(){if(st.hb!=="done"){A.hb();return}ask("need",Q[0][1])},open:function(){st.view="street";st.tab="overview";complete("open")},
+   health:function(){go("street:health");if(st.hb==="done")A.repair()},pm:function(){go("street:pm");A.plan()},parts:function(){go("street:parts");A.parts()},
+   photos:function(){go("street:fv");st.fv.s.forEach(function(v,i){if(v!=="ok"){if(FVI[i].firstBad)st.fv.retaken[i]=true;fvEval(i,true)}})},
+   claim:function(){go("street:wb");if(!st.closed)A.close();A.claim()},night:function(){go("street:log");A.night()},brief:function(){st.view="brief";complete("brief")}};
+  seq[c.id]();render()}
+
+/* ---------- render + events ---------- */
+function render(){document.querySelector(".app").classList.toggle("wide",st.view==="board"||st.view==="ws"||(st.view==="street"&&st.sview==="board"));renderTabs();renderGuide();$("main").innerHTML=st.view==="home"?renderHome():st.view==="street"?renderStreet():st.view==="board"?renderBoard():st.view==="ws"?renderWS():renderBrief();renderChat()}
+document.addEventListener("click",function(e){var nc=e.target.closest("[data-nsel]");if(nc){st.bsel=st.bsel===nc.dataset.nsel?null:nc.dataset.nsel;render();return}var sel=e.target.closest("[data-fvsel]");if(sel&&!e.target.closest("button")){st.fv.sel=+sel.dataset.fvsel;render();return}var t=e.target.closest("button,tr,a");if(!t)return;
+  if(t.dataset.nav){st.view=t.dataset.nav;if(st.view==="street"){if(isCur("open"))complete("open")}if(st.view==="brief"&&isCur("brief")&&st.night)complete("brief");render();window.scrollTo(0,0);return}
+  if(t.dataset.open!==undefined){if(t.dataset.open==="0"){st.view="street";st.tab="overview";if(isCur("open"))complete("open");render();window.scrollTo(0,0)}else toast("This prototype opens Station Rd. Other streets work the same way.");return}
+  if(t.dataset.wsx){toast("In the real workspace this opens here. The prototype opens the agent page, board and brief.");return}
+  if(t.dataset.sview){st.sview=t.dataset.sview;render();return}
+  if(t.dataset.tab){st.sview="list";st.tab=t.dataset.tab;render();return}
+  if(t.dataset.bfilt){st.bfilt=t.dataset.bfilt;render();return}
+  if(t.dataset.fvsel!==undefined){st.fv.sel=+t.dataset.fvsel;render();return}
+  if(t.dataset.fvtake!==undefined){fvEval(+t.dataset.fvtake);render();return}
+  if(t.dataset.fvretake!==undefined){fvRetake(+t.dataset.fvretake);render();return}
+  if(t.dataset.fvup!==undefined){var fi=$("fvfile");fi.dataset.i=t.dataset.fvup;fi.value="";fi.click();return}
+  if(t.dataset.act){var f=A[t.dataset.act];if(f){f();render()}return}
+  if(t.dataset.ask){var q=Q.find(function(x){return x[0]===t.dataset.ask});ask(q[0],q[1]);return}
+  if(t.dataset.gostep!==undefined){st.step=+t.dataset.gostep;var v=STEPS[st.step].view;if(v.indexOf("street")===0&&st.hb!=="idle")go(v);else if(v==="home"||v==="brief")go(v);render();return}
+  if(t.dataset.auto){auto();return}
+  if(t.dataset.reset){st=fresh();render();toast("Demo reset.");return}
+});
+$("fvfile").addEventListener("change",function(){var f=this.files&&this.files[0],i=+this.dataset.i;if(!f)return;var r=new FileReader();r.onload=function(){st.fv.img[i]=r.result;fvEval(i)};r.readAsDataURL(f)});
+$("cform").addEventListener("submit",function(e){e.preventDefault();var v=$("cinput").value.trim();if(!v)return;$("cinput").value="";var l=v.toLowerCase();
+  var k=/need|today|red street|which/.test(l)?"need":/why|red/.test(l)?"why":/part|van|stock|rcd/.test(l)?"part":/warrant|claim/.test(l)?"warr":/special|engineer|expert/.test(l)?"spec":/week|did|summary/.test(l)?"week":"x";ask(k,v)});
+// theme
+var root=document.documentElement;
+function setT(t){root.setAttribute("data-theme",t);[].forEach.call(document.querySelectorAll("[data-theme-set]"),function(b){b.setAttribute("aria-pressed",b.dataset.themeSet===t?"true":"false")});try{localStorage.setItem("st-theme",t)}catch(_){}}
+var sv=null;try{sv=localStorage.getItem("st-theme")}catch(_){}
+setT(sv||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));
+[].forEach.call(document.querySelectorAll("[data-theme-set]"),function(b){b.addEventListener("click",function(){setT(b.dataset.themeSet)})});
+render();
+})();
+</script>
+
+</body>
+</html>
